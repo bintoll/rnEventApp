@@ -12,88 +12,110 @@
  */
 
 import React, { Component } from 'react';
-import {
-    Image,
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
-import { SocialIcon } from 'react-native-elements'
-import { List, ListItem } from 'react-native-elements'
-import { Button } from 'react-native-elements'
+import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
+import { SocialIcon, List, ListItem, Button } from 'react-native-elements'
 
 export default class Categories extends Component {
     render() {
         const list = [
             {
-                title: 'Category 1',
-                icon: 'star'
+                name: 'Category 1',
+                leftIcon: <Image source={require('../resources/images/star.png')} />
             },
             {
-                title: 'Category 2',
-                icon: 'star'
+                name: 'Category 2',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
             },
             {
-                title: 'Category 3',
-                icon: 'star'
+                name: 'Category 3',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
             },
             {
-                title: 'Category 4',
-                icon: 'star'
+                name: 'Category 4',
+                leftIcon: <Image source={require('../resources/images/star.png')} />
             },
             {
-                title: 'Category 5',
-                icon: 'star'
+                name: 'Category 5',
+                leftIcon: <Image source={require('../resources/images/star.png')} />
             },
             {
-                title: 'Category 6',
-                icon: 'star'
+                name: 'Category 6',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
             },
             {
-                title: 'Category 7',
-                icon: 'star'
+                name: 'Category 7',
+                leftIcon: <Image source={require('../resources/images/star.png')} />
             },
             {
-                title: 'Category 8',
-                icon: 'star'
+                name: 'Category 8',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
             },
             {
-                title: 'Category 9',
-                icon: 'star'
+                name: 'Category 9',
+                leftIcon: <Image source={require('../resources/images/star.png')} />
             },
             {
-                title: 'Category 10',
-                icon: 'star'
+                name: 'Category 10',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
             },
+            {
+                name: 'Category 11',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
+            },
+            {
+                name: 'Category 12',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
+            },
+            {
+                name: 'Category 13',
+                leftIcon: <Image source={require('../resources/images/goldStar.png')} />
+            },
+            {
+                name: 'Category 14',
+                leftIcon: <Image source={require('./../resources/images/goldStar.png')} />
+            },
+            {
+                name: 'Category 15',
+                leftIcon: <Image source={require('./../resources/images/goldStar.png')} />
+            }
 
-        ]
-        let pic= {
-            uri: 'https://png.icons8.com/back/android/24'
-        };
+
+        ];//list of categories(title,image)
         return (
-            <View >
-                <Image source={pic} style={{width: 24, height: 24}} />
-                <SocialIcon
-                    title='Sign In With Facebook'
-                    button
-                    type='facebook'
-                    size='10'
-                />
-                <List>
-                    {
-                        list.map((item, i) => (
-                            <ListItem
-                                key={i}
-                                title={item.title}
-                                leftIcon={{name: item.icon}}
-                            />
-                        ))
-                    }
-                </List>
-                <Button
-                    title='Contact us' />
-            </View>
+            <ScrollView>
+                <View>
+                    <View style={styles.buttons}>
+                        <SocialIcon
+                            title='Log In With Facebook'
+                            button
+                            type='facebook'
+                            borderRadius={0}
+                        />
+                    </View >
+                    <View>
+                        <List containerStyle={styles.list}>
+                            {
+                                list.map((l, i) => (
+                                    <ListItem
+                                        avatar= {l.leftIcon}
+                                        key={i}
+                                        title={l.name}
+                                        hideChevron
+                                        containerStyle={styles.listContainer}
+                                    />
+                                ))
+                            }
+                        </List>
+                    </View >
+                    <View style={[styles.buttons, styles.contact]}>
+                        <Button style={styles.contact}
+                                title='Contact us'
+                                backgroundColor="#18A15F"
+                        />
+                    </View>
+                </View>
+            </ScrollView>
+
 
 
         );
@@ -102,5 +124,28 @@ export default class Categories extends Component {
 
 
 
+const styles = StyleSheet.create({
+    allElements: {
+        marginBottom:25
+    },
+    buttons: {
+        width:300,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop:10
+    },
+    list:{
+        marginBottom: 20,
+        borderTopWidth:0,
+        borderBottomWidth:0
+    },
+    listContainer: {
+        width:200,
+        alignSelf:'center',
+        borderBottomWidth:0
+    },//for each category from list
+    bottom: {
+        marginBottom:10
+    }//for bottom elements
+});
 
-AppRegistry.registerComponent('Categories', () => Categories);

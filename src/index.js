@@ -8,19 +8,14 @@
  */
 
 import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View
-} from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 import Categories from './layouts/categories.js'
 
 export default class rnEventApp extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Categories/>
+            <View>
+                <Categories />
             </View>
         );
     }
@@ -44,5 +39,3 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
 });
-
-AppRegistry.registerComponent('rnEventApp', () => rnEventApp);

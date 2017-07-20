@@ -6,4 +6,6 @@
 
 import React, { Component } from 'react';
 import rnEventApp from './src';
+import { AppRegistry} from 'react-native';
 
+AppRegistry.registerComponent('rnEventApp', () => rnEventApp);
