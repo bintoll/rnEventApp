@@ -53,5 +53,7 @@ fastlane/Preview.html
 fastlane/screenshots
 
 ./__tests__
-./ios
 yarn.lock
+jsconfig.json
+package-lock.json
+__tests__

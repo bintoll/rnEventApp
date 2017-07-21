@@ -1,0 +1,1 @@
+export const PERSIST_READY = 'PERSIST_READY'
