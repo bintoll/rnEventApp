@@ -13,8 +13,8 @@ const middleware = [thunk]
 
 const persistConfig = {
     storage: AsyncStorage,
-    whitelist: ['userData', 'articles'],
-    blacklist: ['persist', 'initialLaunch', 'checkKey'],
+    whitelist: [],
+    blacklist: ['persist'],
 }
 
 export default store = composeWithDevTools(
