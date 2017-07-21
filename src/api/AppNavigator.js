@@ -10,8 +10,6 @@ import Other from 'layouts/Other'
 const styles = StyleSheet.create({
   drawerWrapper: {
     flex: 1,
-    borderRightWidth: 3,
-    borderRightColor: '#000'
   },
 })
 
@@ -23,7 +21,7 @@ const CustomDrawerContentComponent = (props) => (
 
 const DrawerNavigatorConfig = {
   drawerWidth: 300,
-  drawerPosition: 'left',
+  drawerPosition: 'right',
   contentComponent: props => <CustomDrawerContentComponent {...props} />,
 }
 
