@@ -18,7 +18,11 @@ import { SocialIcon, List, ListItem, Button } from 'react-native-elements'
 export default class Categories extends Component {
     constructor(props){
         super(props)
-        this.state = {authorized: true}}
+        this.state = {
+            authorized: true,
+            superUser: false
+                     }
+    }
     render() {
         const list = [
             {
@@ -83,28 +87,46 @@ export default class Categories extends Component {
             }
         ];
         var topPage
+        let icon =<View style={styles.avatar}>
+            <Image style={{width:'100%', height:'100%'}}
+                   source={require('./../resources/images/avatar.png')}>
+                <Image style={{width:'80%', height:'80%'}}
+                       source={require('./../resources/images/avatar.png')}></Image>
+            </Image>
+        </View>
         if(this.state.authorized)
         {
-            topPage =
-                <View style={styles.topPage}>
-                    <View style={styles.avatar}>
-                        <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/avatar.png')}>
-                            <Image style={{width:'80%', height:'80%'}}source={require('./../resources/images/avatar.png')}></Image>
-                        </Image>
+            if(this.state.superUser) {
+                topPage =
+                    <View style={styles.topPage}>
+                        {icon}
+                        <View>
+                            <Text style={{marginTop:25}}>כינוי</Text>
+                            <Text style={{color:'#FF0505'}}>משתמש סופר</Text>
+                            <Text style={{color:'#FF0505'}}>לאשר אירועים</Text>
+                            <Text>האירועים שלי</Text>
+                        </View>
                     </View>
-                    <Text style={{marginTop:25}}>כינוי</Text>
-                </View>
+            }//superuser
+            else//authorized, but not superuser (picture and nickname)
+            {
+                topPage =
+                    <View style={styles.topPage}>
+                        {icon}
+                        <Text style={{marginTop:25}}>כינוי</Text>
+                    </View>
+            }
         }
-        else
+        else//non-authorized (just button log on)
         {
-            topPage= <View style={styles.buttons}>
-                <SocialIcon
-                    title='Log In With Facebook'
-                    button
-                    type='facebook'
-                    borderRadius={0}
-                />
-            </View >
+                topPage = <View style={styles.buttons}>
+                    <SocialIcon
+                        title='Log In With Facebook'
+                        button
+                        type='facebook'
+                        borderRadius={0}
+                    />
+                </View >
         }
         return (
             <View style={styles.mainWrapper}>
