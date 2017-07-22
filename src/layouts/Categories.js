@@ -12,10 +12,13 @@
  */
 
 import React, { Component } from 'react';
-import {Image, StyleSheet, Text, View, ScrollView, StatusBar} from 'react-native';
+import {Image, StyleSheet, Text, View, ScrollView, StatusBar, TouchableOpacity} from 'react-native';
 import { SocialIcon, List, ListItem, Button } from 'react-native-elements'
 
 export default class Categories extends Component {
+    constructor(props){
+        super(props)
+        this.state = {authorized: true}}
     render() {
         const list = [
             {
@@ -78,41 +81,61 @@ export default class Categories extends Component {
                 name: 'Category 15',
                 active: true
             }
-
-
         ];
+        var topPage
+        if(this.state.authorized)
+        {
+            topPage =
+                <View style={styles.topPage}>
+                    <View style={styles.avatar}>
+                        <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/avatar.png')}>
+                            <Image style={{width:'80%', height:'80%'}}source={require('./../resources/images/avatar.png')}></Image>
+                        </Image>
+                    </View>
+                    <Text style={{marginTop:25}}>כינוי</Text>
+                </View>
+        }
+        else
+        {
+            topPage= <View style={styles.buttons}>
+                <SocialIcon
+                    title='Log In With Facebook'
+                    button
+                    type='facebook'
+                    borderRadius={0}
+                />
+            </View >
+        }
         return (
             <View style={styles.mainWrapper}>
                 <StatusBar hidden={true} />    
                 <ScrollView>
                     <View>
-                        <View style={styles.buttons}>
-                            <SocialIcon
-                                title='Log In With Facebook'
-                                button
-                                type='facebook'
-                                borderRadius={0}
-                            />
-                        </View >
+                        {topPage}
                         <View>
                             <List containerStyle={styles.list}>
                                 {
                                     list.map((l, i) => (
                                         <ListItem
-                                            avatar= {<Image source={l.active ? require('./../resources/images/goldStar.png') : require('../resources/images/goldStar.png')} />}
                                             key={i}
                                             title={l.name}
-                                            hideChevron
+                                            rightIcon = {<Image source={l.active ? require('./../resources/images/goldStar.png') : require('../resources/images/goldStar.png')} />}
                                             containerStyle={styles.listContainer}
                                         />
                                     ))
                                 }
                             </List>
                         </View >
-                        <View style={[styles.buttons, styles.contact]}>
-                            <Button style={styles.contact}
+                        <View style={[styles.buttons,styles.bottom]}>
+                            <Button
                                     title='Contact us'
                                     backgroundColor="#18A15F"
+                            />
+                        </View>
+                        <View style={[styles.buttons,styles.bottom]}>
+                            <Button
+                                title='Settings'
+                                backgroundColor="#18A15F"
                             />
                         </View>
                     </View>
@@ -149,6 +172,20 @@ const styles = StyleSheet.create({
     },//for each category from list
     bottom: {
         marginBottom:10
-    }//for bottom elements
+    },//for bottom elements
+    avatar:{
+        height:70,
+        width:170,
+        marginRight:10,
+
+    },
+    topPage:{
+        marginTop:10,
+        flex:1,
+        flexDirection: 'row',
+        alignSelf: 'center'
+
+
+    }
 });
 
