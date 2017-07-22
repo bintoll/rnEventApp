@@ -86,7 +86,7 @@ export default class Categories extends Component {
                 active: true
             }
         ];
-        var topPage
+        let topPage
         let icon =<View style={styles.avatar}>
             <Image style={{width:'100%', height:'100%'}}
                    source={require('./../resources/images/avatar.png')}>

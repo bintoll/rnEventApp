@@ -7,8 +7,8 @@ import moment from 'moment';
 class Other extends Component {
     constructor(props){
         super(props)
-        this.state = {date: '29-12-2016'}
-        this.state ={data: [//data for FlatList
+        this.state = {date: '29-12-2016',
+        data: [//data for FlatList
             {price: 'אֲסִימוֹן', key: 'item1',
             pic: './src/event.jpg',
             time: '20-30', distance:'30 ק"מ',
