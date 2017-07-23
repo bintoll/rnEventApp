@@ -133,8 +133,7 @@ const styles = StyleSheet.create({
     },
     buttons: {
         width:300,
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        alignSelf: 'center',
         marginTop:10
     },
     list:{

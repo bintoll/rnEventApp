@@ -10,20 +10,40 @@ class Buttons extends Component {
         super(props)
         this.state = {
             buttons: [
-                'חופשי',
-                'עלות סימבול',
-                'עֲלוּת',
+                {
+                    name: 'חופשי',
+                    isActive: false
+                },
+                {
+                    name:'עלות סימבול',
+                    isActive: false
+                },
+                {
+                    name:'עֲלוּת',
+                    isActive:false,
+                }
             ]
         }
     }
+    _ButtonOn = (i) => {
+        const newState = this.state.buttons
+        newState[i].isActive = !newState[i].isActive
+        this.setState({buttons: newState})
+    }
+
         render() {
+        let bckgColor
             return(
                 <View>
                     {
                         this.state.buttons.map((butt,i) => {
                             return (
-                                <View style={styles.buttons} key={'cat'+i}>
-                                        <Button backgroundColor='#FFFFFF' color="#A8ABAC" title={butt}/>
+                                <View style={styles.buttons} key={'btn'+i}>
+                                        <Button backgroundColor={butt.isActive ? '#18A15F' :'#FFFFFF' }
+                                                color="#A8ABAC"
+                                                title={butt.name}
+                                                onPress={()=>this._ButtonOn(i)}
+                                        />
                                 </View>
                             )
                         })
@@ -43,5 +63,6 @@ const styles = StyleSheet.create({
         borderColor:'#A8ABAC'
 
     },
+
 })
 export default Buttons;
