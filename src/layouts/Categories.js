@@ -13,15 +13,12 @@
 
 import React, { Component } from 'react';
 import {Image, StyleSheet, Text, View, ScrollView, StatusBar, TouchableOpacity} from 'react-native';
-import { SocialIcon, List, ListItem, Button } from 'react-native-elements'
+import { List, ListItem, Button } from 'react-native-elements'
+import CategoriesTopPg from './../companents/CategoriesTopPg'
 
 export default class Categories extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            authorized: true,
-            superUser: false
-                     }
     }
     render() {
         const list = [
@@ -86,54 +83,12 @@ export default class Categories extends Component {
                 active: true
             }
         ];
-        let topPage
-        let icon =<View style={styles.avatar}>
-            <Image style={{width:'100%', height:'100%'}}
-                   source={require('./../resources/images/avatar.png')}>
-                <Image style={{width:'80%', height:'80%'}}
-                       source={require('./../resources/images/avatar.png')}></Image>
-            </Image>
-        </View>
-        if(this.state.authorized)
-        {
-            if(this.state.superUser) {
-                topPage =
-                    <View style={styles.topPage}>
-                        {icon}
-                        <View>
-                            <Text style={{marginTop:25}}>כינוי</Text>
-                            <Text style={{color:'#FF0505'}}>משתמש סופר</Text>
-                            <Text style={{color:'#FF0505'}}>לאשר אירועים</Text>
-                            <Text>האירועים שלי</Text>
-                        </View>
-                    </View>
-            }//superuser
-            else//authorized, but not superuser (picture and nickname)
-            {
-                topPage =
-                    <View style={styles.topPage}>
-                        {icon}
-                        <Text style={{marginTop:25}}>כינוי</Text>
-                    </View>
-            }
-        }
-        else//non-authorized (just button log on)
-        {
-                topPage = <View style={styles.buttons}>
-                    <SocialIcon
-                        title='Log In With Facebook'
-                        button
-                        type='facebook'
-                        borderRadius={0}
-                    />
-                </View >
-        }
         return (
             <View style={styles.mainWrapper}>
                 <StatusBar hidden={true} />    
                 <ScrollView>
                     <View>
-                        {topPage}
+                        <CategoriesTopPg/>
                         <View>
                             <List containerStyle={styles.list}>
                                 {

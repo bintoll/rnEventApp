@@ -4,8 +4,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Image, StyleSheet, View, Text, FlatList, StatusBar, I18nManager } from 'react-native'
 import { Button } from 'react-native-elements'
-import DatePicker from 'react-native-datepicker'
-import moment from 'moment';
 
 class Event extends Component {
     constructor(props) {

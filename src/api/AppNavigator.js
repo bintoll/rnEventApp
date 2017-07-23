@@ -7,6 +7,8 @@ import { addNavigationHelpers, StackNavigator, DrawerNavigator, DrawerItems } fr
 import Categories from 'layouts/Categories'
 import Other from 'layouts/Other'
 import Event from 'layouts/Event'
+import CategoriesTopPg from './../companents/CategoriesTopPg'
+import Buttons from '../companents/Buttons'
 
 const styles = StyleSheet.create({
   drawerWrapper: {
@@ -29,7 +31,7 @@ const DrawerNavigatorConfig = {
 export const AppNavigator = DrawerNavigator(
   {
     Other: {
-      screen: Event,
+      screen: Buttons,
     },
   }, DrawerNavigatorConfig);
 
