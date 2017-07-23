@@ -14,7 +14,7 @@
 import React, { Component } from 'react';
 import {Image, StyleSheet, Text, View, ScrollView, StatusBar, TouchableOpacity} from 'react-native';
 import { List, ListItem, Button } from 'react-native-elements'
-import CategoriesTopPg from './../companents/CategoriesTopPg'
+import CategoriesTopPg from 'components/CategoriesTopPg'
 
 export default class Categories extends Component {
     constructor(props){
