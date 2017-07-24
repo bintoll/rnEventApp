@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import { addNavigationHelpers, StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
 
 // Imports for routes
-import Categories from 'layouts/Categories'
-import Other from 'layouts/Other'
+import Drawer from 'layouts/Drawer'
+import Events from 'layouts/Events'
 import Event from 'layouts/Event'
 import Settings from 'layouts/Settings'
+import EventMap from 'layouts/EventMap'
 
 const styles = StyleSheet.create({
   drawerWrapper: {
@@ -17,21 +18,33 @@ const styles = StyleSheet.create({
 
 const CustomDrawerContentComponent = (props) => (
   <View style={ styles.drawerWrapper }>
-    <Categories />
+    <Drawer {...props} />
   </View>
 );
 
 const DrawerNavigatorConfig = {
   drawerWidth: 300,
-  drawerPosition: 'left',
+  drawerPosition: 'right',
   contentComponent: props => <CustomDrawerContentComponent {...props} />,
 }
 
+const stckNav = StackNavigator({
+  Events: { screen: Events, },
+  Event: { screen: Event, },
+  EventMap: {screen: EventMap }
+}, {navigationOptions: {
+  header: null
+}
+});
+
 export const AppNavigator = DrawerNavigator(
   {
-    Other: {
-      screen: Settings,
+    Main: {
+      screen: stckNav,
     },
+    Settings: {
+      screen: Settings
+    }
   }, DrawerNavigatorConfig);
 
 @connect(state => ({

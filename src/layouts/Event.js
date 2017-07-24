@@ -2,8 +2,10 @@
  * Created by admin on 22.07.2017.
  */
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, StatusBar, I18nManager } from 'react-native'
+import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager } from 'react-native'
 import { Button } from 'react-native-elements'
+
+import NavBar from 'components/NavBar'
 
 class Event extends Component {
     constructor(props) {
@@ -24,12 +26,17 @@ class Event extends Component {
     }
 
     componentWillMount() {
-        this.props.navigation.navigate('DrawerOpen')
+        // this.props.navigation.navigate('DrawerOpen')
+    }
+
+    goToMap = () => {
+        this.props.navigation.navigate('EventMap')
     }
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView style={{backgroundColor: 'white'}}>
+                <NavBar navName="back" handleBack={() => this.props.navigation.goBack() } />    
                 <View style={{flex:1,height:250, marginTop:10}}>
                     <Image style={{width:'100%', height:'100%'}}
                            source={require('./../resources/images/event.jpg')}></Image>
@@ -80,6 +87,7 @@ class Event extends Component {
                         <View style={styles.bottomButts}><Button backgroundColor='#FFFFFF' color="#A8ABAC" title="הגדרות הודעה"/></View>
                         <View style={styles.bottomButts}><Button backgroundColor='#FFFFFF' color="#A8ABAC" title="להגיש תלונה"/></View>
                         <View style={styles.bottomButts}><Button backgroundColor='#FFFFFF' color="#A8ABAC" title="למחוק אירוע"/></View>
+                        <View style={styles.bottomButts}><Button onPress={() => this.goToMap()} backgroundColor='#FFFFFF' color="#A8ABAC" title="Go to map"/></View>
                     </View>
                 </View>
 

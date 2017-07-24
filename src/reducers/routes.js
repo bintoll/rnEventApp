@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 
 import { AppNavigator } from '../api/AppNavigator';
 
-const mainSceneAction = AppNavigator.router.getActionForPathAndParams('Other');
+const mainSceneAction = AppNavigator.router.getActionForPathAndParams('Main');
 const initialStateMain = AppNavigator.router.getStateForAction(mainSceneAction);
 // const secondAction = AppNavigator.router.getActionForPathAndParams('Other');
 

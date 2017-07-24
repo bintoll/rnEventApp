@@ -1,52 +1,40 @@
-/**
- * Created by admin on 22.07.2017.
- */
 import React, { Component } from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import { Button, CheckBox } from 'react-native-elements'
 
 class Buttons extends Component {
-
-    _ButtonOn = (i) => {
-        const newState = this.state.buttons
-        newState[i].isActive = !newState[i].isActive
-        this.setState({buttons: newState})
+    render() {
+        return(
+            <View>
+                {
+                    this.props.list && this.props.list.map((item,i) => {
+                        return (
+                            <View style={styles.buttons} key={i}>
+                                {
+                                    this.props.checkbox
+                                    ? <CheckBox
+                                        checkedIcon='check-square-o'
+                                        uncheckedIcon='square-o'
+                                        title={item.name}
+                                        checked={item.isActive}
+                                        onPress={()=>this.props.callback(i)}
+                                        containerStyle={{borderWidth:0}}/>
+                                        : <Button backgroundColor={item.isActive ? '#18A15F' : '#FFFFFF'}
+                                            color="#A8ABAC"
+                                            title={item.name}
+                                            onPress={() => this.props.callback(i)}
+                                            containerViewStyle={{marginLeft: 0, marginRight: 0}}/>
+                                }
+                            </View>
+                        )
+                    })
+                }
+            </View>
+        );
     }
 
-        render() {
-        console.log(this.props)
-            return(
-                <View>
-                    {
-                        this.props.list && this.props.list.map((butt,i) => {
-                            return (
-                                <View style={styles.buttons} key={'btn'+i}>
-                                    {
-                                        this.props.checkbox
-                                        ? <CheckBox
-                                                checkedIcon='check-square-o'
-                                                uncheckedIcon='square-o'
-                                                title={chk.name}
-                                                checked={chk.isActive}
-                                                onPress={()=>this.props.callback()}
-                                                containerStyle={{borderWidth:0}}
-                                            />
-                                        : <Button backgroundColor={butt.isActive ? '#18A15F' :'#FFFFFF' }
-                                              color="#A8ABAC"
-                                                  title={butt.name}
-                                               onPress={()=>this.props.callback()}
-                                            />
-
-                                    }
-                                </View>
-                            )
-                        })
-                    }
-                </View>
-            );
-        }
-
-    }
+}
+    
 const styles = StyleSheet.create({
     buttons: {
         width:300,
