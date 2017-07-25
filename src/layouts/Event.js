@@ -37,7 +37,7 @@ class Event extends Component {
         return (
             <ScrollView style={{backgroundColor: 'white'}}>
                 <NavBar navName="back" handleBack={() => this.props.navigation.goBack() } />    
-                <View style={{flex:1,height:250, marginTop:10}}>
+                <View style={{flex:1,height:250, marginTop:20}}>
                     <Image style={{width:'100%', height:'100%'}}
                            source={require('./../resources/images/event.jpg')}></Image>
                 </View>

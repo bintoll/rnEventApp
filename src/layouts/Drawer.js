@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         borderBottomWidth:0
     },
     listContainer: {
-        width:170,
+        width: 170,
         alignSelf:'center',
         borderBottomWidth: 0,
     },

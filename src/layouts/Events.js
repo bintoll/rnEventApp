@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
-import moment from 'moment';
+import moment from 'moment'
+import {BoxShadow} from 'react-native-shadow'
+
+
+import { width } from 'constants/config.js'
 
 import NavBar from 'components/NavBar.js'
 
@@ -59,6 +63,17 @@ const sortByArr = [
     key: 'distance'
   }
 ]
+
+const shadowOpt = {
+	width:298,
+	height:300,
+	color:"#000",
+	border:4,
+	radius:1,
+	opacity:0.2,
+	x:0,
+	y:8,
+}
 
 class Other extends Component {
   constructor(props){
@@ -146,38 +161,38 @@ class Other extends Component {
               <FlatList
                 data={this.state.data}
                 renderItem={({ item }) => (
-                  <TouchableOpacity onPress={() => this.goToEvent(item.key)}>
-                    <View style={styles.oneEvent}>
-                      <View style={styles.topInfoWrapper}>
-                        <View style={styles.categoriesWrapper}>
-                          {
-                            item.categories.map((category,i) => {
-                              return (
-                                <View style={styles.category} key={'cat'+i}>
-                                  <Text style={styles.categoryText}>{category}</Text>
-                                </View>
-                              )
-                            })
-                          }
+                    <TouchableOpacity onPress={() => this.goToEvent(item.key)}>
+                      <View style={styles.oneEvent}>
+                        <View style={styles.topInfoWrapper}>
+                          <View style={styles.categoriesWrapper}>
+                            {
+                              item.categories.map((category,i) => {
+                                return (
+                                  <View style={styles.category} key={'cat'+i}>
+                                    <Text style={styles.categoryText}>{category}</Text>
+                                  </View>
+                                )
+                              })
+                            }
+                          </View>
+                        <Text style={{color:'#00FB08', fontSize:25,textAlign:'right'}}>{item.price}</Text>
+                      </View>
+                      <View style={{flex:1,backgroundColor:"red",height:250}}>
+                        <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/event.jpg')}></Image>
+                      </View>
+                      <Text style={{color:'#7661C6', fontSize:30,textAlign:'left'}}>{item.time}</Text>
+                      <View style={styles.rowElements}>
+                        <View>
+                          <Text style={[styles.rightElements,styles.downElements, {color:'#A8ABAC'}]}>מֶרְחָק:</Text>
+                          <Text style={[styles.rightElements,styles.downElements, {color:'#A8ABAC'}]}>בחסות:</Text>
                         </View>
-                      <Text style={{color:'#00FB08', fontSize:25,textAlign:'right'}}>{item.price}</Text>
-                    </View>
-                    <View style={{flex:1,backgroundColor:"red",height:250}}>
-                      <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/event.jpg')}></Image>
-                    </View>
-                    <Text style={{color:'#7661C6', fontSize:30,textAlign:'left'}}>{item.time}</Text>
-                    <View style={styles.rowElements}>
-                      <View>
-                        <Text style={[styles.rightElements,styles.downElements, {color:'#A8ABAC'}]}>מֶרְחָק:</Text>
-                        <Text style={[styles.rightElements,styles.downElements, {color:'#A8ABAC'}]}>בחסות:</Text>
+                        <View>
+                          <Text style={[{color:'#7661C6',marginLeft:30},styles.downElements]}>{item.host}</Text>
+                          <Text style={[{color:'#7661C6',marginLeft:30},styles.downElements]}>{item.distance}</Text>
+                        </View>
+                        </View>
                       </View>
-                      <View>
-                        <Text style={[{color:'#7661C6',marginLeft:30},styles.downElements]}>{item.host}</Text>
-                        <Text style={[{color:'#7661C6',marginLeft:30},styles.downElements]}>{item.distance}</Text>
-                      </View>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
+                    </TouchableOpacity>
               )}/>
             </View>
           <View style={styles.buttons}><Button backgroundColor='#FFFFFF' color="#A8ABAC" title="היום הבא..."/></View>
@@ -211,6 +226,7 @@ const styles = StyleSheet.create({
     marginRight:5,
     padding:15,
     marginTop:5,
+    backgroundColor: 'white'
   },
   downElements: {
     fontSize:20,

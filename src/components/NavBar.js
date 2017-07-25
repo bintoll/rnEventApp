@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { Icon } from 'react-native-elements'
+import { BoxShadow } from 'react-native-shadow'
+
+import { width } from 'constants/config.js'
+
+const shadowOpt = {
+	width:width(100),
+	height:36,
+	color:"#000",
+	border:0,
+	radius:1,
+	opacity:0.2,
+	x:0,
+	y:12,
+}
 
 class NavBar extends Component {
 	whatToRender = (navName) => {
+		let component;
 		switch (navName) {
 			case 'back':
 				return (
@@ -13,7 +28,7 @@ class NavBar extends Component {
 							name='keyboard-arrow-left'
 							color='#999999'
 							style={styles.backIcon}
-							size={34}
+							size={31}
 							onPress={() => this.props.handleBack()} />
 					</View>	
 				)
@@ -27,7 +42,14 @@ class NavBar extends Component {
 								size={34}
 								onPress={() => this.props.searchHandle()} />
 								<View style={styles.searchInputWrapper}>
-									<TextInput value={this.props.searchText} onChangeText={(text) => this.props.textChangeHandle(text)} style={styles.searchInput} />
+									<TextInput
+										allowFontScaling={true}
+										underlineColorAndroid="transparent"
+										editable={true}
+										enablesReturnKeyAutomatically={true}
+										value={this.props.searchText}
+										onChangeText={(text) => this.props.textChangeHandle(text)}
+										style={styles.searchInput} />
 								</View>
 						</View>
 						<Icon
@@ -64,7 +86,9 @@ class NavBar extends Component {
 	render() {
 		return (
 			<View style={styles.navBarWrapper}>
-				{this.whatToRender(this.props.navName)}
+				<BoxShadow setting={shadowOpt}>
+					{this.whatToRender(this.props.navName)}
+				</BoxShadow>
 			</View>
 		);
 	}
@@ -72,14 +96,16 @@ class NavBar extends Component {
 
 const styles = StyleSheet.create({
 	navBarWrapper: {
-		flex: 1,
-		height: 30,
-		marginTop: 24,
-		marginHorizontal: 14,
+		height: 40,
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	navBarInner: {
 		flexDirection: 'row',
 		alignItems: 'center',
+		paddingHorizontal: 30,
+		paddingVertical: 6,
+		backgroundColor: 'white'
 	},
 	navText: {
 		color: '#999999'
@@ -94,7 +120,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderRadius: 20,
 		height: 34,
-		width: 210,
+		flex: 1,
 		borderColor: '#999999',
 		marginHorizontal: 10
 	},

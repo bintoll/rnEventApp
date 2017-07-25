@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     ViewMap: {
-      height: 500
+      flex: 1,
+      marginTop: 10
     }
 
 })

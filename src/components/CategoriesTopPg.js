@@ -2,7 +2,7 @@
  * Created by admin on 22.07.2017.
  */
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager } from 'react-native'
+import { ScrollView, Image, StyleSheet, View, Text, FlatList, findNodeHandle } from 'react-native'
 import { SocialIcon, Button } from 'react-native-elements'
 import { BlurView } from 'react-native-blur';
 
@@ -11,14 +11,22 @@ class CategoriesTopPg extends Component {
         super(props)
         this.state = {
             authorized: true,
-            superUser: true
+            superUser: true,
+            viewRef: null
         }
     }
+
+    imageLoaded = () => {
+        this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
+    }
+    
     _checkAuthorization = () => {
         let icon =
             <View style={styles.avatar}>
                 <View style={styles.underlayWrapper}>
                     <Image
+                        ref={(img) => { this.backgroundImage = img; }}
+                        onLoadEnd={this.imageLoaded}
                         style={styles.image}
                         source={require('./../resources/images/avatar.png')}/>
                 </View>
@@ -26,8 +34,8 @@ class CategoriesTopPg extends Component {
                     style={styles.absolute}
                     viewRef={this.state.viewRef}
                     blurType="light"
-                    blurAmount={10}
-                    />
+                    blurAmount={5} />
+                <View style={styles.emtyRow} />
                 <View style={styles.avatarWrapper}>
                     <Image
                         style={styles.image}
@@ -106,7 +114,8 @@ const styles = StyleSheet.create({
     },
     underlayWrapper: {
         width: 160,
-        height: 100
+        height: 100,
+        overflow: 'hidden'
     },
     avatarWrapper: {
         width: 50,
@@ -125,6 +134,13 @@ const styles = StyleSheet.create({
         width: 160,
         height: 100,
         top: 0, left: 0, bottom: 0, right: 0,
+        borderWidth: 0
     },
+    emtyRow: {
+        width: '100%',
+        height: 4,
+        marginTop: -1,
+        backgroundColor: 'white'
+    }
 })
 export default CategoriesTopPg;
