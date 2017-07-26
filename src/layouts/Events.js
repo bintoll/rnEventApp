@@ -80,7 +80,7 @@ class Other extends Component {
     super(props)
     const sortByArrMod = sortByArr.map((item, i) => ({ ...item, isActive: i == 0 ? true : false }))
       this.state = {
-        date: '29-12-2016',
+        date: '01-01-2016',
         data: events,
         searchText: '',
         sortByArr: sortByArrMod,
@@ -93,12 +93,12 @@ class Other extends Component {
   _dayForward = () => {
     let temp = (moment(this.state.date,"DD.MM.YYYY"))//from string to moment
     temp = temp.add(1, 'days')//plus day
-    this.setState({ date: (temp.get('date')+'-' + (temp.get('month')+1) + temp.get('year'))})//from momnt to string
+    this.setState({ date: (temp.get('date')+'-' + (temp.get('month')+1) + '-' + temp.get('year'))})//from momnt to string
   }
   _dayBackward = () => {
     let temp = (moment(this.state.date,"DD.MM.YYYY"))//from string to moment
     temp = temp.add(-1, 'days')//minus day
-    this.setState({ date: (temp.get('date')+'-' + (temp.get('month')+1) + temp.get('year'))})//from momnt to string
+    this.setState({ date: (temp.get('date')+'-' + (temp.get('month')+1) + '-' + temp.get('year'))})//from momnt to string
   }
   
   searchTextHandle = (text) => {

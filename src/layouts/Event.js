@@ -81,7 +81,7 @@ class Event extends Component {
                     <Text style={styles.aboutEvent}>קצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת
                     קצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטקצת טקסטטקסט</Text>
                     <View style={styles.columnElements}>
-                        <View style={styles.bottomButts}>
+                      <View style={styles.bottomButts}>
                             <Button backgroundColor='#FFFFFF' color="#A8ABAC" title="הוסף ללוח השנה של"/></View>
                         <View style={styles.bottomButts}><Button backgroundColor='#FFFFFF' color="#A8ABAC" title="לשתף עם חברים"/></View>
                         <View style={styles.bottomButts}><Button backgroundColor='#FFFFFF' color="#A8ABAC" title="הגדרות הודעה"/></View>

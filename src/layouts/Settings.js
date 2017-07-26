@@ -3,10 +3,12 @@
  */
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { Button } from 'react-native-elements'
 
 import NavBar from 'components/NavBar'
 import Buttons from 'components/Buttons'
 import YesOrNo from 'components/YesOrNo'
+import ApproveCancel from 'components/ApproveCancel'
 
 const notfSettings = [
     {
@@ -21,6 +23,17 @@ const notfSettings = [
         name:'עֲלוּת',
         isActive:false,
     }
+]
+
+const modalButtons = [
+  {
+    name: 'Approve',
+    isActive: false
+  },
+  {
+    name:'Cancel',
+    isActive: false
+  },
 ]
 
 const catSettings = [
@@ -60,7 +73,9 @@ class Settings extends Component {
         this.state = {
             notfSettings: notfSettings,
             catSettings: catSettings,
-            priceSettings: priceSettings
+            priceSettings: priceSettings,
+            modalButtons: modalButtons,
+            isModalActive: false
         }
     }
 
@@ -79,7 +94,20 @@ class Settings extends Component {
         this.props.navigation.navigate('DrawerOpen')
     }
 
-    render() {
+  setSettingsModal =(i,listname) => {
+    const newState = this.state[listname]
+    console.log('newState')
+    console.log(i)
+    console.log(newState)
+    newState[i].isActive = !newState[i].isActive
+    this.state.isModalActive=false
+    this.setState({[listname]: newState})
+
+  }
+
+
+
+  render() {
         return (
             <ScrollView>
                 <View style={styles.mainWrapper}>
@@ -107,7 +135,24 @@ class Settings extends Component {
                         </View>
                         <View style={styles.saveOrNoWrapper}>
                             <YesOrNo buttons={{ yes: 'save', no: 'cancel' }} callback={(bool) => this.saveSettings(bool)}/>
-                        </View>    
+                        </View>
+                        <Button
+                            backgroundColor='#FFFFFF'
+                            color="#A8ABAC"
+                            title='test'
+                            onPress={()=>this.setState({isModalActive: !this.state.isModalActive})}
+                        />
+                    </View>
+                    <View>
+                      {
+                        this.state.isModalActive
+                            ? <ApproveCancel
+                                list={this.state.modalButtons}
+                                isModalActive={this.state.isModalActive}
+                                callback={(i)=>this.setSettingsModal(i, 'modalButtons')}
+                            />
+                            : <View></View>
+                      }
                     </View>
                 </View>
             </ScrollView>
