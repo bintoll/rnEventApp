@@ -226,7 +226,14 @@ const styles = StyleSheet.create({
     marginRight:5,
     padding:15,
     marginTop:5,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 0.8,
+    marginBottom: 10,
+    elevation: 10,
+    position: 'relative',
+
   },
   downElements: {
     fontSize:20,
