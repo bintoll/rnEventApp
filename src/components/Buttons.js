@@ -8,6 +8,10 @@ class Buttons extends Component {
             <View>
                 {
                     this.props.list && this.props.list.map((item,i) => {
+                        if(item.colorButton)
+                        {
+
+                        }
                         return (
                             <View style={styles.buttons} key={i}>
                                 {
@@ -19,7 +23,9 @@ class Buttons extends Component {
                                         checked={item.isActive}
                                         onPress={()=>this.props.callback(i)}
                                         containerStyle={{borderWidth:0}}/>
-                                        : <Button backgroundColor={item.isActive ? '#18A15F' : '#FFFFFF'}
+                                        : <Button
+                                            backgroundColor={item.colorButton ? item.colorButton : item.isActive ?
+                                            '#18A15F' : '#FFFFFF'}
                                             color="#A8ABAC"
                                             title={item.name}
                                             onPress={() => this.props.callback(i)}

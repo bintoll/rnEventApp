@@ -27,12 +27,15 @@ const notfSettings = [
 
 const modalButtons = [
   {
-    name: 'Approve',
-    isActive: false
+    name: 'לְאַשֵׁר',
+    isActive: false,
+    colorButton: '#18A15F'
   },
   {
-    name:'Cancel',
-    isActive: false
+    name:'לְבַטֵל',
+    isActive: false,
+    colorButton: '#DD5145'
+
   },
 ]
 
@@ -81,28 +84,26 @@ class Settings extends Component {
 
     setSettings =(i,listname) => {
         const newState = this.state[listname]
-        console.log('newState')
-        console.log(i)
-        console.log(newState)
         newState[i].isActive = !newState[i].isActive
         this.setState({[listname]: newState})
     }
 
     saveSettings = (bool) => {
-        console.log('saved ' + bool)
         this.props.navigation.navigate('Events')
         this.props.navigation.navigate('DrawerOpen')
     }
 
   setSettingsModal =(i,listname) => {
     const newState = this.state[listname]
-    console.log('newState')
-    console.log(i)
-    console.log(newState)
     newState[i].isActive = !newState[i].isActive
     this.state.isModalActive=false
     this.setState({[listname]: newState})
 
+  }
+
+  modalActivity = () =>
+  {
+    this.setState({isModalActive: false})
   }
 
 
@@ -148,7 +149,7 @@ class Settings extends Component {
                         this.state.isModalActive
                             ? <ApproveCancel
                                 list={this.state.modalButtons}
-                                isModalActive={this.state.isModalActive}
+                                callbackTouchOut={this.modalActivity}//for TouchableWithoutFeedback onPressOut
                                 callback={(i)=>this.setSettingsModal(i, 'modalButtons')}
                             />
                             : <View></View>
