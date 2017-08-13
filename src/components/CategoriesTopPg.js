@@ -1,146 +1,126 @@
-/**
- * Created by admin on 22.07.2017.
- */
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, findNodeHandle } from 'react-native'
-import { SocialIcon, Button } from 'react-native-elements'
-import { BlurView } from 'react-native-blur';
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+
+import { width, height } from 'constants/config'
 
 class CategoriesTopPg extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            authorized: true,
-            superUser: true,
-            viewRef: null
-        }
-    }
 
-    imageLoaded = () => {
-        this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
-    }
-    
-    _checkAuthorization = () => {
-        let icon =
-            <View style={styles.avatar}>
-                <View style={styles.underlayWrapper}>
-                    <Image
-                        ref={(img) => { this.backgroundImage = img; }}
-                        onLoadEnd={this.imageLoaded}
-                        style={styles.image}
-                        source={require('./../resources/images/avatar.png')}/>
-                </View>
-                <BlurView
-                    style={styles.absolute}
-                    viewRef={this.state.viewRef}
-                    blurType="light"
-                    blurAmount={5} />
-                <View style={styles.emtyRow} />
-                <View style={styles.avatarWrapper}>
-                    <Image
-                        style={styles.image}
-                        source={require('./../resources/images/avatar.png')} />
-                </View>
-            </View>
-        if(this.state.authorized)
-        {
-            if(this.state.superUser) {
-                    return(
-                    <View style={styles.topPage}>
-                        {icon}
-                        <View style={styles.nameWrapper}>
-                            <Text style={[styles.nameItem, {marginTop:25}]}>כינוי</Text>
-                            <Text style={[styles.nameItem, {color:'#FF0505'}]}>משתמש סופר</Text>
-                            <Text style={[styles.nameItem, {color:'#FF0505'}]}>לאשר אירועים</Text>
-                            <Text style={[styles.nameItem]}>האירועים שלי</Text>
-                        </View>
-                    </View>
-                    )
-            }//superuser
-
-            else//authorized, but not superuser (picture and nickname)
-            {
-                return(
-                    <View style={styles.topPage}>
-                        {icon}
-                        <Text style={{marginTop:25}}>כינוי</Text>
-                    </View>
-            )
-            }
-        }
-        else//non-authorized (just button log on)
-        {
-            return(
-            <View style={styles.buttons}>
-                <SocialIcon
-                    title='Log In With Facebook'
-                    button
-                    type='facebook'
-                    borderRadius={0}
-                />
-            </View >
-            )
-        }
-    }
-
-
-
-    render() {
+  _checkAuthorization = () => {
+    let icon =
+        <View style={styles.avatarWrapper}>
+          <Image
+              style={styles.image}
+              source={require('./../resources/images/avatar.png')}/>
+        </View>
+    if (this.props.isAuthorized) {
+      if (this.props.superUser) {
         return (
-            <View>
-                {this._checkAuthorization()}
+            <View style={styles.containerAdmin}>
+              <View style={styles.rowElementsAdmin}>
+                {icon}
+                <View>
+                  <Text style={styles.userName}>sכינוי</Text>
+                  <TouchableOpacity style={styles.buttonAdmin}>
+                    <Text style={styles.buttonTextAdmin}>אשר את האירוע</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
-        );
+        )
+      }//superuser
+      else//authorized, but not superuser (picture and nickname)
+      {
+        return (
+            <View style={styles.containerUser}>
+              <View style={styles.rowElementsUser}>
+                <View style={styles.avatarWrapper}>{icon}</View>
+                <Text style={styles.userName}>כינוי</Text>
+              </View>
+            </View>
+        )
+      }
     }
-}
-const styles = StyleSheet.create({
-    avatar:{
-        height:70,
-        width:170,
-        marginRight:10,
 
-    },
-    topPage:{
-        marginTop:10,
-        flex:1,
-        flexDirection: 'row',
-        alignSelf: 'center'
-    },
-    nameWrapper: {
-        // textAlign: 'left'
-    },
-    nameItem: {
-        textAlign: 'left'
-    },
-    underlayWrapper: {
-        width: 160,
-        height: 100,
-        overflow: 'hidden'
-    },
-    avatarWrapper: {
-        width: 50,
-        height: 50,
-        overflow: 'hidden',
-        borderRadius: 50,
-        position: "absolute",
-        top: 20, left: 20,
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-    },
-    absolute: {
-        position: "absolute",
-        width: 160,
-        height: 100,
-        top: 0, left: 0, bottom: 0, right: 0,
-        borderWidth: 0
-    },
-    emtyRow: {
-        width: '100%',
-        height: 4,
-        marginTop: -1,
-        backgroundColor: 'white'
+    else//non-authorized (just button log on)
+    {
+      return (
+          <View style={styles.containerUnLogin}>
+            <TouchableOpacity>
+              <Text style={styles.userName}>Login in with Facebook</Text>
+            </TouchableOpacity>
+          </View>
+      )
     }
+  }
+
+  render() {
+    return (
+        <View>
+          {this._checkAuthorization()}
+        </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  containerUnLogin: {
+    backgroundColor:'#B783A9',
+    height:height(15),
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+  containerUser: {
+    backgroundColor:'#B783A9',
+    height:height(15),
+    justifyContent: 'center',
+  },
+  containerAdmin: {
+    backgroundColor:'#B783A9',
+    height:height(15),
+    justifyContent: 'center',
+  },
+  rowElementsUser: {
+    flexDirection:'row',
+    alignItems:'center',
+    paddingLeft:width(5)
+  },
+  rowElementsAdmin: {
+    flexDirection:'row',
+    paddingLeft:width(5)
+  },
+  buttonAdmin: {
+    marginTop:height(0.15),
+    borderWidth:1,
+    borderColor:'white',
+    borderRadius:4,
+    alignItems:'center',
+    width:width(25),
+    opacity:0.9
+  },
+  buttonTextAdmin: {
+    paddingVertical:width(2),
+    fontFamily:'System',
+    fontSize:width(3),
+    color: '#FFFFFF',
+
+  },
+  userName:{
+    fontFamily:'System',
+    fontSize:width(5),
+    color:'#FFFFFF',
+    fontWeight:'bold',
+    textAlign:'left'
+  },
+  avatarWrapper: {
+    width:height(9),
+    height:height(9),
+    marginRight:width(2.5)
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 65,
+  },
 })
+
 export default CategoriesTopPg;

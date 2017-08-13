@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { addNavigationHelpers, StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
+import { width, height } from 'constants/config'
 
 // Imports for routes
 import Drawer from 'layouts/Drawer'
 import Events from 'layouts/Events'
 import Event from 'layouts/Event'
-import Settings from 'layouts/Settings'
 import EventMap from 'layouts/EventMap'
+import ContactUs from 'layouts/ContactUs'
 
 const styles = StyleSheet.create({
   drawerWrapper: {
@@ -23,8 +24,8 @@ const CustomDrawerContentComponent = (props) => (
 );
 
 const DrawerNavigatorConfig = {
-  drawerWidth: 300,
-  drawerPosition: 'left',
+  drawerWidth: width(76),
+  drawerPosition: 'right',
   contentComponent: props => <CustomDrawerContentComponent {...props} />,
 }
 
@@ -42,8 +43,8 @@ export const AppNavigator = DrawerNavigator(
     Main: {
       screen: stckNav,
     },
-    Settings: {
-      screen: Settings
+    ContactUs: {
+      screen: ContactUs
     }
   }, DrawerNavigatorConfig);
 

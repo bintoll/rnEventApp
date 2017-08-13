@@ -1,9 +1,7 @@
-/**
- * Created by admin on 23.07.2017.
- */
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { Button } from 'react-native-elements'
+import ChooseCategory from 'components/ChooseCategory'
 
 import NavBar from 'components/NavBar'
 import Buttons from 'components/Buttons'
@@ -66,7 +64,7 @@ const priceSettings = [
     {
         name:'עֲלוּת',
         isActive:false,
-    }
+    },
 ]
 
 
@@ -155,6 +153,7 @@ class Settings extends Component {
                             : <View></View>
                       }
                     </View>
+                  <ChooseCategory/>
                 </View>
             </ScrollView>
         )

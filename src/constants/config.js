@@ -7,3 +7,46 @@ export const width = (pers) => {
 export const height = (pers) => {
     return pers/100*window.height
 }
+
+export const categoryListMenu = [
+  {
+    name: 'הקטגוריה שלי',
+    icon: require('../resources/images/mycategory.png')
+  },
+  {
+    name: 'האירועים שלי',
+    icon: require('../resources/images/mycategory.png')
+  },
+  {
+    name: 'כל האירועים',
+    icon: require('../resources/images/myevents.png')
+  },
+]
+
+export const ContactPlaceholders = [
+  {
+    heading:'Name',
+    placeholder:'Please Input Your Name'
+  },
+  {
+    heading:'Phone',
+    placeholder:'Please Input Your Phone'
+  },
+  {
+    heading:'Email',
+    placeholder:'Please Input Your Email'
+  },
+  {
+    heading:'Company Name',
+    placeholder:'Please Input Your Company Name'
+  },
+  {
+    heading:'Subject',
+    placeholder:'Please Input Your Subject'
+  },
+  {
+    heading:'Description',
+    placeholder:'Please Input Your Description'
+  }
+
+]

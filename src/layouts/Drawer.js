@@ -1,117 +1,100 @@
 import React, { Component } from 'react';
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import { List, ListItem, Button } from 'react-native-elements'
+import { Button } from 'react-native-elements'
+import {categoryListMenu} from 'constants/config'
+import { width, height } from 'constants/config'
 
 import CategoriesTopPg from 'components/CategoriesTopPg'
 
 const list = [
-    {
-        name: 'שלום מה שלומך 1',
-        active: false
-    },
-    {
-        name: 'שלום מה שלומך 2',
-        active: true
-    },
-    {
-        name: 'שלום מה שלומך 3',
-        active: true
-    },
-    {
-        name: 'שלום מה שלומך 4',
-        active: false
-    },
-    {
-        name: 'שלום מה שלומך 5',
-        active: false
-    },
-    {
-        name: 'שלום מה שלומך 6',
-        active: true
-    },
-    {
-        name: 'שלום מה שלומך 7',
-        active: false
-    },
-    {
-        name: 'שלום מה שלומך 8',
-        active: true
-    },
-    {
-        name: 'שלום מה שלומך 9',
-        active: false
-    },
-    {
-        name: 'שלום מה שלומך 10',
-        active: true
-    },
-    {
-        name: 'Category 11',
-        active: true
-    },
-    {
-        name: 'Category 12',
-        active: true
-    },
-    {
-        name: 'Category 13',
-        active: false
-    },
-    {
-        name: 'Category 14',
-        active: true
-    },
-    {
-        name: 'Category 15',
-        active: true
-    }
+  {
+    name: 'ילדים',
+    active: false
+  },
+  {
+    name: 'הַשׂכָּלָה',
+    active: true
+  },
+  {
+    name: 'אומנות',
+    active: true
+  },
+  {
+    name: 'לִרְקוֹד',
+    active: false
+  },
+  {
+    name: 'לִרְקוֹד',
+    active: false
+  },
+  {
+    name: 'לִרְקוֹד',
+    active: false
+  },
 ];
 
 export default class Drawer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            list
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      list,
     }
-    render() {
-        return (
-            <View style={styles.mainWrapper}>
-                <ScrollView>
-                    <View>
-                        <CategoriesTopPg/>
-                        <View>
-                            <List containerStyle={styles.list}>
-                                {
-                                    this.state.list.map((l, i) => (
-                                        <ListItem
-                                            key={i}
-                                            title={l.name}
-                                            rightIcon={<Image style={styles.starWrapper} source={l.active ? require('./../resources/images/goldStar.png') : require('../resources/images/goldStar.png')} />}
-                                            containerStyle={styles.listContainer}
-                                        />
-                                    ))
-                                }
-                            </List>
-                        </View >
-                        <View style={[styles.buttons,styles.bottom]}>
-                            <Button
-                                    title='Contact us'
-                                    backgroundColor="#18A15F"
-                            />
-                        </View>
-                        <View style={[styles.buttons,styles.bottom]}>
-                            <Button
-                                onPress={() => this.props.navigation.navigate('Settings')}
-                                title='Settings'
-                                backgroundColor="#18A15F"
-                            />
-                        </View>
-                    </View>
-                </ScrollView>
+  }
+
+  render() {
+    return (
+        <View style={styles.mainWrapper}>
+          <ScrollView>
+            <View>
+              <CategoriesTopPg
+                isAuthorized={true}
+                superUser={true}/>
+              <View style={{paddingLeft:width(5)}}>
+                {
+                  categoryListMenu.map((item, index) => (
+                          <View style={styles.categoryListWrapper} key={'clm'+index}>
+                            <TouchableOpacity>
+                              <View style={{flexDirection:'row',alignItems:'center'}}>
+                                <View style={styles.iconWrapper}><Image source={item.icon}/></View>
+                                <Text style={styles.textStyle}>{item.name}</Text>
+                              </View>
+                            </TouchableOpacity>
+                          </View>
+                      )
+                  )
+                }
+                <View style={styles.categoryListWrapper}>
+                  <Text style={styles.textHeader}>קטגוריה</Text>
+                </View>
+                {
+                  list.map((item, index) => (
+                          <View style={styles.categoryListWrapper} key={'lst'+index}>
+                            <TouchableOpacity>
+                              <View style={{flexDirection:'row',alignItems:'center'}}>
+                                <View style={styles.iconWrapper}>
+                                  <Image
+                                      source={item.active
+                                      ?require('../resources/images/selectedstar.png')
+                                      :require('../resources/images/unselectedstar.png')}/>
+                                </View>
+                                <Text style={styles.textStyle}>{item.name}</Text>
+                              </View>
+                            </TouchableOpacity>
+                          </View>
+                      )
+                  )
+                }
+              </View>
+              <View style={{alignItems:'center',marginVertical:height(6)}}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ContactUs')}>
+                  <Text style={styles.buttonText}>תיצור איתנו קשר</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-        );
-    }
+          </ScrollView>
+        </View>
+    )
+  }
 }
 
 
@@ -119,24 +102,38 @@ export default class Drawer extends Component {
 const styles = StyleSheet.create({
     mainWrapper: {
         flex: 1,
-        marginTop: 10
+        //marginTop: 10
     },
     allElements: {
         marginBottom:25
     },
-    buttons: {
-        width:300,
-        alignSelf: 'center',
-        marginTop:10
+    iconWrapper: {
+      height:width(5),
+      width:width(5),
+      marginRight:width(2.5),
     },
+    buttonText: {
+      fontFamily:'System',
+      fontSize:16,
+      color:'#333333',
+      opacity:0.9
+    },
+    categoryListWrapper: {
+      alignItems:'flex-start',
+      marginTop:height(3)
+  },
     list:{
         marginBottom: 20,
         borderTopWidth:0,
-        borderBottomWidth:0
+        borderBottomWidth:0,
+      backgroundColor:'blue'
     },
+  headerWrapper: {
+    alignItems:'flex-start',
+    marginTop:height(4)
+  },
     listContainer: {
         width: 170,
-        alignSelf:'center',
         borderBottomWidth: 0,
     },
     bottom: {
@@ -145,7 +142,6 @@ const styles = StyleSheet.create({
     avatar:{
         height:70,
         width:170,
-        marginRight:10,
 
     },
     topPage:{
@@ -154,8 +150,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'center'
     },
-    starWrapper: {
-        marginHorizontal: 8
-    }
+    textStyle: {
+      fontFamily: 'System',
+      fontSize: 16,
+      color: '#333333',
+    },
+  textHeader: {
+    fontFamily: 'LucidaGrande',
+    fontSize: 16,
+    color:'#999999'
+  },
 });
 

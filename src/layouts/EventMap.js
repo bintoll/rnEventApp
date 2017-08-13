@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, StatusBar} from 'react-native';
 import MapView from "react-native-maps";
 
 import NavBar from 'components/NavBar'
@@ -47,7 +47,11 @@ class EventMap extends Component {
   render() {
       return(
           <View style={styles.container}>
-            <NavBar navName="searchAndBack"
+            <StatusBar
+                backgroundColor='#B076A0'
+                barStyle="light-content"
+            />
+            <NavBar navName="map"
               handleBack={() => this.props.navigation.goBack()}
               searchHandle={() => this.searchHandle()}
               textChangeHandle={(text) => this.searchTextHandle(text)}/>
@@ -79,11 +83,11 @@ class EventMap extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        marginTop: 15
     },
     ViewMap: {
       flex: 1,
-      marginTop: 10
     }
 
 })

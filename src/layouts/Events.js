@@ -1,55 +1,67 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity } from 'react-native'
-import { Button } from 'react-native-elements'
+import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar } from 'react-native'
+import { Button, Icon } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
 import {BoxShadow} from 'react-native-shadow'
 
 
-import { width } from 'constants/config.js'
+
+import { width,height } from 'constants/config.js'
 
 import NavBar from 'components/NavBar.js'
 
 const events = [
   {
-    price: 'אֲסִימוֹן', 
+    name: 'הליכה ודיון בארמון הקיץ',
+    place:'טירת קיץ',
+    price: 'חופשי',
     key: 'item1',
     pic: './src/event.jpg',
-    time: '20-30', distance:'30 ק"מ',
+    time: '10:30pm',
+    distance:'3km',
     host: 'דף הפייסבוק שלי',
-    categories: ['מזון', 'מזון', 'מזון']
+    categories: ['אומנות', 'לִרְקוֹד', 'הַשׂכָּלָה']
   },
   {
+    name: 'הליכה ודיון בארמון הקיץ',
+    place:'Summer Palace',
     price: 'חופשי',
     key: 'item2',
     pic: './src/event2.jpg',
     time: '20-30', distance:'30 ק"מ',
     host: 'דף הפייסבוק שלי',
-    categories: ['מזון', 'מזון', 'מזון']
+    categories: ['אומנות', 'לִרְקוֹד', 'הַשׂכָּלָה']
   },
   {
+    name: 'הליכה ודיון בארמון הקיץ',
+    place:'טירת קיץ',
     price: 'חופשי',
     key: 'item3',
     pic: './src/event2.jpg',
     time: '20-30', distance:'30 ק"מ',
     host: 'דף הפייסבוק שלי',
-    categories: ['מזון', 'מזון', 'מזון']
+    categories: ['אומנות', 'לִרְקוֹד', 'הַשׂכָּלָה']
   },
   {
+    name: 'הליכה ודיון בארמון הקיץ',
+    place:'טירת קיץ',
     price: 'חופשי',
     key: 'item4',
     pic: './src/event2.jpg',
     time: '20-30', distance:'30 ק"מ',
     host: 'דף הפייסבוק שלי',
-    categories: ['מזון', 'מזון', 'מזון']
+    categories: ['אומנות', 'לִרְקוֹד', 'הַשׂכָּלָה']
   },
   {
+    name: 'הליכה ודיון בארמון הקיץ',
+    place:'טירת קיץ',
     price: 'חופשי',
     key: 'item5',
     pic: './src/event2.jpg',
     time: '20-30', distance:'30 ק"מ',
     host: 'דף הפייסבוק שלי',
-    categories: ['מזון', 'מזון', 'מזון']
+    categories: ['אומנות', 'לִרְקוֹד', 'הַשׂכָּלָה']
   },
 ]
 
@@ -59,21 +71,10 @@ const sortByArr = [
     key: 'date'
   },
   {
-    name: 'מיון',
+    name: 'מרחק (קרוב רחוק)',
     key: 'distance'
   }
 ]
-
-const shadowOpt = {
-	width:298,
-	height:300,
-	color:"#000",
-	border:4,
-	radius:1,
-	opacity:0.2,
-	x:0,
-	y:8,
-}
 
 class Other extends Component {
   constructor(props){
@@ -123,79 +124,112 @@ class Other extends Component {
   
   render() {
     return (
-      <ScrollView style={{backgroundColor: 'white'}}>
-        <NavBar navName="search"
+      <ScrollView style={{backgroundColor: '#F8F8F8'}}>
+        <StatusBar
+            backgroundColor='#B076A0'
+            barStyle="light-content"
+        />
+        <NavBar navName="mainPage"
           handleDrawerOpen={() => this.props.navigation.navigate('DrawerOpen')}
           searchHandle={() => this.searchHandle()}
           textChangeHandle={(text) => this.searchTextHandle(text)}/>
-          <View style={[styles.centerEl, styles.rowElements, styles.container]}>
-            <Button backgroundColor='#FFFFFF' color="#A8ABAC" style={styles.pickerDate} title=">" onPress={this._dayForward}/>
+          <View style={[styles.centerEl, styles.rowElements,{paddingHorizontal:20,justifyContent:'space-between',alignItems:'center'}]}>
+            <View style={styles.rowElements}>
+            <Icon
+                style={styles.arrayCalendar}
+                name='keyboard-arrow-right'
+                color='black'
+                size={22}
+                onPress={this._dayForward} />
               <DatePicker
-                style={{width: 200}}
+                style={{width: 130}}
                 date={this.state.date}
                 mode="date"
                 placeholder="בחר תאריך"
-                format="DD-MM-YYYY"
+                format="MMMM D"
+                showIcon={false}
                 minDate="01-05-2014"
                 maxDate="01-08-2018"
                 confirmBtnText="לְאַשֵׁר"
                 cancelBtnText="לְבַטֵל"
                 customStyles={{
-                  dateIcon: {
-                    position: 'absolute',
-                    left: 0,
-                    top: 4,
-                    marginLeft: 0
+                   dateInput: {
+                    borderWidth:0,
+                    height:25,
                   },
-                  dateInput: {
-                    marginLeft: 36
+                  dateText: {
+                    fontFamily:'System',
+                    fontSize: width(4.5),
+                    color: '#333333'
                   }
                 }}
                 onDateChange={(date) => {this.setState({date: date})}}/>
-              <Button backgroundColor='#FFFFFF' color="#A8ABAC" title="<" style={styles.pickerDate} onPress={this._dayBackward}/>
+            <Icon
+                style={styles.arrayCalendar}
+                name='keyboard-arrow-left'
+                color='black'
+                size={22}
+                onPress={this._dayBackward} />
               </View>
-              <View style={styles.buttons}>
-                <Button onPress={() => this.changeSort()} style={styles.sortBtn} backgroundColor='#FFFFFF' color="#A8ABAC" title={this.state.sortByArr.find(item => item.isActive).name}/>
-              </View>
+            <TouchableOpacity onPress={() => this.changeSort()}>
+              <Text style={styles.sortBy}>{this.state.sortByArr.find(item => item.isActive).name}</Text>
+            </TouchableOpacity>
+          </View>
               <View style={styles.fltList}>
               <FlatList
                 data={this.state.data}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => this.goToEvent(item.key)}>
                       <View style={styles.oneEvent}>
-                        <View style={styles.topInfoWrapper}>
-                          <View style={styles.categoriesWrapper}>
+                        <View style={[styles.rowElements,{alignItems:'flex-start'}]}>
+                          <View style={[styles.columnElements,{alignItems:'center'}]}>
+                            <View style={{height:145,width:145}}>
+                              <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/event.jpg')}/>
+                              <View style={[styles.rowElements,{alignItems:'center',marginTop:5}]}>
+                                <View style={{height:18,width:18}}>
+                                  <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/avatar.png')}/>
+                                </View>
+                                <Text style={styles.hostedby}>בחסות</Text>
+                              </View>
+                            </View>
+                          </View>
+                          <View style={[styles.columnElements,{marginLeft:width(4)}]}>
+                            <View style={styles.rowElements}>
                             {
-                              item.categories.map((category,i) => {
-                                return (
-                                  <View style={styles.category} key={'cat'+i}>
-                                    <Text style={styles.categoryText}>{category}</Text>
-                                  </View>
+                              item.categories.map((category) => {
+                                return(
+                                <View style={styles.categoryWrapper} key={category}>
+                                  <Text style={styles.categoryText}>{category}</Text>
+                                </View>
                                 )
                               })
                             }
+                            </View>
+                            <Text style={styles.nameEvent}>{item.name}</Text>
+                            <View style={[styles.rowElements,styles.textWithIconWrapper]}>
+                              <Image style={styles.icon} source={require('./../resources/images/pay.png')}/>
+                              <Text style={styles.iconText}>{item.price}</Text>
+                            </View>
+                            <View style={[styles.rowElements,styles.textWithIconWrapper]}>
+                              <Image style={styles.icon} source={require('./../resources/images/time.png')}/>
+                              <Text style={styles.iconText}>{item.time}</Text>
+                            </View>
+                            <View style={[styles.rowElements,styles.textWithIconWrapper]}>
+                              <Image style={styles.icon} source={require('./../resources/images/location.png')}/>
+                              <Text style={styles.iconText}>{item.place}</Text>
+                              <Text style={styles.iconText}>{item.distance} • </Text>
+                            </View>
+
                           </View>
-                        <Text style={{color:'#00FB08', fontSize:25,textAlign:'right'}}>{item.price}</Text>
-                      </View>
-                      <View style={{flex:1,backgroundColor:"red",height:250}}>
-                        <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/event.jpg')}></Image>
-                      </View>
-                      <Text style={{color:'#7661C6', fontSize:30,textAlign:'left'}}>{item.time}</Text>
-                      <View style={styles.rowElements}>
-                        <View>
-                          <Text style={[styles.rightElements,styles.downElements, {color:'#A8ABAC'}]}>מֶרְחָק:</Text>
-                          <Text style={[styles.rightElements,styles.downElements, {color:'#A8ABAC'}]}>בחסות:</Text>
-                        </View>
-                        <View>
-                          <Text style={[{color:'#7661C6',marginLeft:30},styles.downElements]}>{item.host}</Text>
-                          <Text style={[{color:'#7661C6',marginLeft:30},styles.downElements]}>{item.distance}</Text>
                         </View>
                         </View>
-                      </View>
+
                     </TouchableOpacity>
               )}/>
             </View>
-          <View style={styles.buttons}><Button backgroundColor='#FFFFFF' color="#A8ABAC" title="היום הבא..."/></View>
+          <TouchableOpacity style={{alignSelf:'center',marginVertical:12}}>
+            <Text style={styles.buttonText}>Go to the next day</Text>
+          </TouchableOpacity>
         </ScrollView>
     );
   }
@@ -203,70 +237,88 @@ class Other extends Component {
 
 const styles = StyleSheet.create({
   centerEl: {
-    alignSelf: 'center',
-    marginTop:20,
+    width:'100%',
+    paddingVertical:8,
+    shadowColor: '#EBEBEC',
+    shadowOffset: { width: 1, height: 3 },
+    borderBottomWidth:1,
+    borderTopWidth:0,
+    alignItems:'center',
+    backgroundColor:'white',
+    shadowOpacity: 0.3,
+    elevation: 2,
+    borderColor:'#EFEFEF',
   },
   rowElements:{
-    flex: 1,
     flexDirection: 'row',
   },
-  buttons: {
-    width:300,
-    alignSelf: 'center',
-    marginTop:10,
-    marginBottom:10,
-    borderWidth: 1,
-    borderColor:'#A8ABAC'
-
+  columnElements:{
+    flexDirection: 'column',
+  },
+  sortBy: {
+    fontFamily: 'System',
+    fontSize: width(4),
+    color: '#333333'
+  },
+  categoryWrapper: {
+    backgroundColor: '#F4F4F4',
+    borderRadius: 4,
+    marginRight:width(2),
+    justifyContent:'center',
+    alignItems:'center',
+    padding:width(1.2),
+  },
+  categoryText: {
+    fontFamily: 'System',
+    fontSize: width(3.5),
+    color: '#5C5C5C',
+  },
+  hostedby: {
+    fontFamily:'System',
+    fontSize: width(4.5),
+    color: '#999999',
+    marginLeft:width(3),
+  },
+  nameEvent: {
+    fontFamily: 'System',
+    fontSize: width(5),
+    color: '#B076A0',
+    width:220,
+    textAlign:'left',
+    marginBottom:18,
+  },
+  arrayCalendar: {
+    justifyContent:'center',
+    alignSelf:'center',
+    height:25
+  },
+  icon: {
+    width:17,
+    height:17,
+    marginRight:5,
+    resizeMode:'contain'
+  },
+  iconText: {
+    fontFamily: 'System',
+    fontSize: width(4),
+    color: '#999999'
   },
   oneEvent: {
-    borderWidth:1,
-    borderColor:'#A8ABAC',
-    marginLeft:5,
-    marginRight:5,
     padding:15,
-    marginTop:5,
     backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: { width: 10, height: 10 },
-    shadowOpacity: 0.8,
-    marginBottom: 10,
-    elevation: 10,
-    position: 'relative',
+    marginTop:15,
 
   },
-  downElements: {
-    fontSize:20,
-    textAlign:'left',
-  },
-  category:{
-    backgroundColor:'pink',
-    marginHorizontal: 4,
-    marginVertical: 2,
-    paddingHorizontal: 4,
-    paddingVertical: 2,
-    borderRadius:3,
-    borderWidth:2,
-  },
-  categoriesWrapper:{
-    flexDirection: 'row',
-  },
-  topInfoWrapper:{
-    justifyContent: 'space-between',
-    flexDirection:'row',
-    marginVertical: 10,
-    paddingVertical: 5,
+  textWithIconWrapper: {
     alignItems:'center',
+    marginBottom:7,
   },
-  categoryText:{
-    color:'white',
+  buttonText: {
+    fontFamily: 'System',
+    fontSize: width(4),
+    color: '#B076A0',
+    alignSelf:'center'
   },
-  pickerDate: {
-    width: 15
-  },
-  sortBtn: {
-    height: 42
-  }
 })
 
 export default Other;
