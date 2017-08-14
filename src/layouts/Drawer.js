@@ -41,6 +41,12 @@ export default class Drawer extends Component {
     }
   }
 
+  changeStar = (indexStar) => {
+    const newState = this.state.list
+    newState[indexStar].active = !newState[indexStar].active
+    this.setState({list: newState})
+  }
+
   render() {
     return (
         <View style={styles.mainWrapper}>
@@ -49,7 +55,7 @@ export default class Drawer extends Component {
               <CategoriesTopPg
                 isAuthorized={true}
                 superUser={true}/>
-              <View style={{paddingLeft:width(5)}}>
+              <View style={{paddingHorizontal:width(5)}}>
                 {
                   categoryListMenu.map((item, index) => (
                           <View style={styles.categoryListWrapper} key={'clm'+index}>
@@ -64,12 +70,17 @@ export default class Drawer extends Component {
                   )
                 }
                 <View style={styles.categoryListWrapper}>
-                  <Text style={styles.textHeader}>קטגוריה</Text>
+                  <View style={[styles.rowElements,{justifyContent:'space-between'}]}>
+                    <Text style={styles.textHeader}>קטגוריה</Text>
+                    <TouchableOpacity>
+                      <Text style={styles.saveText}>שמור את ההגדרה</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
                 {
                   list.map((item, index) => (
                           <View style={styles.categoryListWrapper} key={'lst'+index}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.changeStar(index)}>
                               <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <View style={styles.iconWrapper}>
                                   <Image
@@ -100,61 +111,63 @@ export default class Drawer extends Component {
 
 
 const styles = StyleSheet.create({
-    mainWrapper: {
-        flex: 1,
-        //marginTop: 10
-    },
-    allElements: {
-        marginBottom:25
-    },
-    iconWrapper: {
-      height:width(5),
-      width:width(5),
-      marginRight:width(2.5),
-    },
-    buttonText: {
-      fontFamily:'System',
-      fontSize:16,
-      color:'#333333',
-      opacity:0.9
-    },
-    categoryListWrapper: {
-      alignItems:'flex-start',
-      marginTop:height(3)
+  mainWrapper: {
+    flex: 1,
+    //marginTop: 10
   },
-    list:{
-        marginBottom: 20,
-        borderTopWidth:0,
-        borderBottomWidth:0,
-      backgroundColor:'blue'
-    },
+  rowElements: {
+    flexDirection:'row'
+  },
+  allElements: {
+    marginBottom:25
+  },
+  iconWrapper: {
+    height:width(5),
+    width:width(5),
+    marginRight:width(2.5),
+  },
+  buttonText: {
+    fontFamily:'System',
+    fontSize:16,
+    color:'#333333',
+    opacity:0.9
+  },
+  categoryListWrapper: {
+    marginTop:height(3)
+  },
+  list:{
+    marginBottom: 20,
+    borderTopWidth:0,
+    borderBottomWidth:0,
+    backgroundColor:'blue'
+  },
+  saveText: {
+    fontFamily: 'System',
+    fontSize: width(3.5),
+    color: '#B783A9'
+  },
   headerWrapper: {
     alignItems:'flex-start',
     marginTop:height(4)
   },
-    listContainer: {
-        width: 170,
-        borderBottomWidth: 0,
-    },
-    bottom: {
-        marginBottom:10
-    },
-    avatar:{
-        height:70,
-        width:170,
-
-    },
-    topPage:{
-        marginTop:10,
-        flex:1,
-        flexDirection: 'row',
-        alignSelf: 'center'
-    },
-    textStyle: {
-      fontFamily: 'System',
-      fontSize: 16,
-      color: '#333333',
-    },
+  listContainer: {
+    width: 170,
+    borderBottomWidth: 0,
+  },
+  bottom: {
+    marginBottom:10
+  },
+  topPage:{
+    marginTop:10,
+    flex:1,
+    flexDirection: 'row',
+    alignSelf: 'center'
+  },
+  textStyle: {
+    fontFamily: 'System',
+    fontSize: 16,
+    color: '#333333',
+  },
   textHeader: {
     fontFamily: 'LucidaGrande',
     fontSize: 16,
