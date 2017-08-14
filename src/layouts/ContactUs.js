@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     textAlign:'left',
     marginBottom:5,
     marginTop:10,
+    marginLeft: width(3)
   },
   textInput: {
     textAlign: I18nManager.isRTL ? 'right' : 'left',
@@ -86,11 +87,10 @@ const styles = StyleSheet.create({
   textInputDescription: {
     textAlign: I18nManager.isRTL ? 'right' : 'left',
     height: 95,
-    backgroundColor:'white',
     borderWidth:1,
     borderColor:'#EBEBEC',
     borderRadius:5,
-    alignContent:'flex-start',
+    justifyContent:'flex-end',
     marginBottom:20,
   },
   button: {
