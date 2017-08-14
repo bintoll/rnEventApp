@@ -8,27 +8,27 @@ import ChooseCategory from 'components/ChooseCategory'
 
 const CategoriesForPopup = [
   {
-    name:'Education',
+    name:'הַשׂכָּלָה',
     isActive: false,
   },
   {
-    name: 'Kid',
+    name: 'תִכנוּת',
     isActive: false,
   },
   {
-    name: 'Music',
+    name: 'מוּסִיקָה',
     isActive: false,
   },
   {
-    name:'Entertaiment',
+    name:'בישול',
     isActive: false,
   },
   {
-    name: 'Activity',
+    name: 'פעילות',
     isActive: false,
   },
   {
-    name: 'Party',
+    name: 'מפלגה',
     isActive: false,
   }
 ]
@@ -84,6 +84,23 @@ class Event extends Component {
 
   buttonPress = (nameButton) => {
       this.setState({[nameButton]:!this.state[nameButton]})
+  }
+
+  SaveCategories = () => {
+    let saveCategories = ''
+    this.setState({popUpActive:false})
+    this.state.CategoriesForPopup.forEach((item) => {
+      if(item.isActive)
+        saveCategories+=item.name + ' '
+    })
+    console.log(saveCategories)
+  }
+
+  CancelCategories = () => {
+    this.state.CategoriesForPopup.forEach((item) => {
+      item.isActive=false
+    })
+    this.setState({popUpActive:false})
   }
 
     render() {
@@ -206,8 +223,8 @@ class Event extends Component {
               {
                 this.state.popUpActive
                   ?<ChooseCategory
-                        callbackClose={()=>this.setState({popUpActive:false})}
-                        callbackSave={() => {alert('Categories is saved')}}
+                        callbackClose={()=>this.CancelCategories()}
+                        callbackSave={() => {this.SaveCategories()}}
                         categoriesForPopup={this.state.CategoriesForPopup}
                         ChangeColorPopup={(indexCategory) => {this.ChangeColorPopup(indexCategory)}}/>
                   :null

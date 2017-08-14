@@ -63,7 +63,7 @@ export default class Drawer extends Component {
                           <View style={styles.categoryListWrapper} key={'clm'+index}>
                             <TouchableOpacity>
                               <View style={{flexDirection:'row',alignItems:'center'}}>
-                                <View style={styles.iconWrapper}><Image source={item.icon}/></View>
+                                <Image style={styles.icon} source={item.icon}/>
                                 <Text style={styles.textStyle}>{item.name}</Text>
                               </View>
                             </TouchableOpacity>
@@ -88,12 +88,11 @@ export default class Drawer extends Component {
                           <View style={styles.categoryListWrapper} key={'lst'+index}>
                             <TouchableOpacity onPress={() => this.changeStar(index)}>
                               <View style={{flexDirection:'row',alignItems:'center'}}>
-                                <View style={styles.iconWrapper}>
-                                  <Image
-                                      source={item.active
-                                      ?require('../resources/images/selectedstar.png')
-                                      :require('../resources/images/unselectedstar.png')}/>
-                                </View>
+                                <Image
+                                    style={styles.icon}
+                                    source={item.active
+                                     ?require('../resources/images/selectedstar.png')
+                                     :require('../resources/images/unselectedstar.png')}/>
                                 <Text style={styles.textStyle}>{item.name}</Text>
                               </View>
                             </TouchableOpacity>
@@ -130,6 +129,12 @@ const styles = StyleSheet.create({
   iconWrapper: {
     height:width(5),
     width:width(5),
+    marginRight:width(2.5),
+  },
+  icon: {
+    height:width(5),
+    width:width(5),
+    resizeMode:'contain',
     marginRight:width(2.5),
   },
   buttonText: {

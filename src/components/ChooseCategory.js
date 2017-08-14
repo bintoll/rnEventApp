@@ -15,7 +15,7 @@ class ChooseCategory extends Component {
                 onDismissed={() => this.props.callbackClose()}>
               <View style={styles.popUpWrapper}>
                 <View>
-                  <Text style={styles.textStyle}>Please Select Category</Text>
+                  <Text style={styles.textStyle}>אנא בחר קטגוריה</Text>
                   <View style={styles.border}/>
                   <View style={[styles.rowElements,styles.categoriesWrapper]}>
                   {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   border: {
     borderColor: '#C7C7C7',
-    borderWidth:1,
+    borderWidth:0.3,
   },
   rowElements: {
     flexDirection: 'row',
