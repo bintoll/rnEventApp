@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import { Button } from 'react-native-elements'
+
+
 import {categoryListMenu} from 'constants/config'
 import { width, height } from 'constants/config'
 

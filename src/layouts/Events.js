@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar } from 'react-native'
-import { Button, Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
-import {BoxShadow} from 'react-native-shadow'
+import Alert from 'components/Alert'
 
 
 
@@ -85,9 +85,21 @@ class Other extends Component {
         data: events,
         searchText: '',
         sortByArr: sortByArrMod,
+        alert: {
+          title: 'You must connect to Facebook',
+          buttonText: 'Close',
+          active: true
+        }
       }
   }
-  
+
+  closeAlert = () => {
+    const newState = this.state.alert
+    newState.active = false
+    this.setState({alert: newState})
+  }
+
+
   componentWillMount() {
     // this.props.navigation.navigate('DrawerOpen')
   }
@@ -133,6 +145,7 @@ class Other extends Component {
           handleDrawerOpen={() => this.props.navigation.navigate('DrawerOpen')}
           searchHandle={() => this.searchHandle()}
           textChangeHandle={(text) => this.searchTextHandle(text)}/>
+        <View>
           <View style={[styles.centerEl, styles.rowElements,{paddingHorizontal:20,justifyContent:'space-between',alignItems:'center'}]}>
             <View style={styles.rowElements}>
             <Icon
@@ -219,17 +232,24 @@ class Other extends Component {
                               <Text style={styles.iconText}>{item.place}</Text>
                               <Text style={styles.iconText}>{item.distance} • </Text>
                             </View>
-
                           </View>
                         </View>
                         </View>
-
                     </TouchableOpacity>
               )}/>
             </View>
           <TouchableOpacity style={{alignSelf:'center',marginVertical:12}}>
             <Text style={styles.buttonText}>Go to the next day</Text>
           </TouchableOpacity>
+        </View>
+        {
+          this.state.alert.active
+              ? <Alert
+                  callbackClose={()=>this.closeAlert()}
+                  title={this.state.alert.title}
+                  buttonText={this.state.alert.buttonText}/>
+              :null
+        }
         </ScrollView>
     );
   }
