@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar } from 'react-native'
+import Picker from 'react-native-picker'
 
-import { width, height } from 'constants/config'
+import { width, height,NotificationSettings,SelectPrice } from 'constants/config'
+
 
 import NavBar from 'components/NavBar'
 import ChooseCategory from 'components/ChooseCategory'
+
 
 const CategoriesForPopup = [
   {
@@ -54,6 +57,8 @@ class Event extends Component {
             participants:['./../resources/images/avatar.png','./../resources/images/avatar.png','./../resources/images/avatar.png'
               ,'./../resources/images/avatar.png','./../resources/images/avatar.png','./../resources/images/avatar.png']
           },
+          NotificationSettings,
+          SelectPrice,
           CategoriesForPopup,
           OpenDetails:false,
           willGo: false,
@@ -66,6 +71,28 @@ class Event extends Component {
   componentWillMount() {
     // this.props.navigation.navigate('DrawerOpen')
     this.setState({isIntrested:this.state.isAdmin})
+  }
+
+  callPicker = (namePicker,selectedVal) => {
+    Picker.init({
+      pickerData: [this.state[namePicker]],
+      selectedValue: [selectedVal],
+      pickerTitleText: namePicker,
+      pickerConfirmBtnText: 'Done',
+      pickerCancelBtnText: 'Cancel',
+      pickerToolBarFontSize:18,
+      pickerFontSize:20,
+      onPickerConfirm: data => {
+        console.log(data);
+      },
+      onPickerCancel: data => {
+
+      },
+      onPickerSelect: data => {
+        console.log(data);
+      }
+    })
+    Picker.show()
   }
 
   ChangeColorPopup = (indexCategory) => {//change color
@@ -124,7 +151,9 @@ class Event extends Component {
                     <View style={[styles.rowElements,{justifyContent:'space-between'}]}>
                         <Text style={styles.textName}>{this.state.data.name}</Text>
                       <View style={[styles.columnElements]}>
-                        <Text style={styles.textPrice}>{this.state.data.price}</Text>
+                        <TouchableOpacity onPress={() => this.callPicker('SelectPrice','Token')}>
+                          <Text style={styles.textPrice}>{this.state.data.price}</Text>
+                        </TouchableOpacity>
                         {
                           this.state.isAdmin
                             ? <View style={styles.adjustContainer}>
@@ -171,7 +200,7 @@ class Event extends Component {
                     <TouchableOpacity style={{marginRight:width(8)}} onPress={() => this.goToSelectCat()}>
                       <Text style={styles.timeButtons}>הוסף ליומן</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{marginRight:width(8)}}>
+                    <TouchableOpacity style={{marginRight:width(8)}} onPress={() => this.callPicker('NotificationSettings','1 hour')}>
                       <Text style={styles.timeButtons}>הגדרות התראה</Text>
                     </TouchableOpacity>
                   </View>
