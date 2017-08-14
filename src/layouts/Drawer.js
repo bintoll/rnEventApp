@@ -38,6 +38,8 @@ export default class Drawer extends Component {
     super(props)
     this.state = {
       list,
+      isAuthorized:true,
+      superUser:true,
     }
   }
 
@@ -53,8 +55,8 @@ export default class Drawer extends Component {
           <ScrollView>
             <View>
               <CategoriesTopPg
-                isAuthorized={true}
-                superUser={true}/>
+                isAuthorized={this.state.isAuthorized}
+                superUser={this.state.superUser}/>
               <View style={{paddingHorizontal:width(5)}}>
                 {
                   categoryListMenu.map((item, index) => (
@@ -72,9 +74,13 @@ export default class Drawer extends Component {
                 <View style={styles.categoryListWrapper}>
                   <View style={[styles.rowElements,{justifyContent:'space-between'}]}>
                     <Text style={styles.textHeader}>קטגוריה</Text>
-                    <TouchableOpacity>
-                      <Text style={styles.saveText}>שמור את ההגדרה</Text>
-                    </TouchableOpacity>
+                    {
+                      !this.state.isAuthorized
+                        ?  <TouchableOpacity>
+                            <Text style={styles.saveText}>שמור את ההגדרה</Text>
+                          </TouchableOpacity>
+                        : null
+                    }
                   </View>
                 </View>
                 {
