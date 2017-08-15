@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: width(4),
     color: '#000000',
     textAlign:'center',
-    paddingVertical:height(3.5),
+    paddingVertical:width(5),
   },
   border: {
     borderColor: '#C7C7C7',
@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
   },
   category: {
     width:width(26),
-    marginTop:height(2),
+    marginTop:width(3.35),
     borderRadius:width(1),
-    height:height(5),
+    height:width(8.3),
     justifyContent:'center'
   },
   categoryDisactive: {
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width:width(45),
-    marginTop:height(2),
-    height:height(7),
+    marginTop:width(3.35),
+    height:width(11.7),
     justifyContent:'center',
     borderTopWidth:1,
     borderRightWidth:1,

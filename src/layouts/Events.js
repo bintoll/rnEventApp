@@ -81,7 +81,7 @@ class Other extends Component {
     super(props)
     const sortByArrMod = sortByArr.map((item, i) => ({ ...item, isActive: i == 0 ? true : false }))
       this.state = {
-        date: '01-01-2016',
+        date: 'September 10',
         data: events,
         searchText: '',
         sortByArr: sortByArrMod,
@@ -104,14 +104,14 @@ class Other extends Component {
     // this.props.navigation.navigate('DrawerOpen')
   }
   _dayForward = () => {
-    let temp = (moment(this.state.date,"DD.MM.YYYY"))//from string to moment
+    let temp = (moment(this.state.date,"MMMM D"))//from string to moment
     temp = temp.add(1, 'days')//plus day
-    this.setState({ date: (temp.get('date')+'-' + (temp.get('month')+1) + '-' + temp.get('year'))})//from momnt to string
+    this.setState({ date: temp.format('MMMM D')})//from momnt to string
   }
   _dayBackward = () => {
-    let temp = (moment(this.state.date,"DD.MM.YYYY"))//from string to moment
+    let temp = (moment(this.state.date,"MMMM D"))//from string to moment
     temp = temp.add(-1, 'days')//minus day
-    this.setState({ date: (temp.get('date')+'-' + (temp.get('month')+1) + '-' + temp.get('year'))})//from momnt to string
+    this.setState({ date: temp.format('MMMM D')})//from momnt to string
   }
   
   searchTextHandle = (text) => {
@@ -161,8 +161,7 @@ class Other extends Component {
                 placeholder="בחר תאריך"
                 format="MMMM D"
                 showIcon={false}
-                minDate="01-05-2014"
-                maxDate="01-08-2018"
+
                 confirmBtnText="לְאַשֵׁר"
                 cancelBtnText="לְבַטֵל"
                 customStyles={{
@@ -282,7 +281,7 @@ const styles = StyleSheet.create({
   },
   categoryWrapper: {
     backgroundColor: '#F4F4F4',
-    borderRadius: 4,
+    borderRadius: width(1),
     marginRight:width(2),
     justifyContent:'center',
     alignItems:'center',

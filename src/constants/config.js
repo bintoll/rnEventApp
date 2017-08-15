@@ -37,14 +37,6 @@ export const ContactPlaceholders = [
     placeholder:'Please Input Your Email'
   },
   {
-    heading:'Company Name',
-    placeholder:'Please Input Your Company Name'
-  },
-  {
-    heading:'Subject',
-    placeholder:'Please Input Your Subject'
-  },
-  {
     heading:'Description',
     placeholder:'Please Input Your Description'
   }

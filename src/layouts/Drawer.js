@@ -88,22 +88,24 @@ export default class Drawer extends Component {
                 {
                   list.map((item, index) => (
                           <View style={styles.categoryListWrapper} key={'lst'+index}>
-                            <TouchableOpacity onPress={() => this.changeStar(index)}>
                               <View style={{flexDirection:'row',alignItems:'center'}}>
-                                <Image
-                                    style={styles.icon}
-                                    source={item.active
-                                     ?require('../resources/images/selectedstar.png')
-                                     :require('../resources/images/unselectedstar.png')}/>
-                                <Text style={styles.textStyle}>{item.name}</Text>
+                                <TouchableOpacity onPress={() => this.changeStar(index)}>
+                                  <Image
+                                      style={styles.icon}
+                                      source={item.active
+                                       ?require('../resources/images/selectedstar.png')
+                                       :require('../resources/images/unselectedstar.png')}/>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerClose')}>
+                                  <Text style={styles.textStyle}>{item.name}</Text>
+                                </TouchableOpacity>
                               </View>
-                            </TouchableOpacity>
                           </View>
                       )
                   )
                 }
               </View>
-              <View style={{alignItems:'center',marginVertical:height(6)}}>
+              <View style={{alignItems:'center',marginVertical:width(10)}}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ContactUs')}>
                   <Text style={styles.buttonText}>תיצור איתנו קשר</Text>
                 </TouchableOpacity>
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     marginRight:width(2.5),
   },
   icon: {
-    height:width(5),
+    height:width(8.4),
     width:width(5),
     resizeMode:'contain',
     marginRight:width(2.5),
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
     opacity:0.9
   },
   categoryListWrapper: {
-    marginTop:height(3)
+    marginTop:width(5)
   },
   list:{
     marginBottom: 20,
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
   },
   headerWrapper: {
     alignItems:'flex-start',
-    marginTop:height(4)
+    marginTop:width(6.7)
   },
   listContainer: {
     width: 170,
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
     color: '#333333',
   },
   textHeader: {
-    fontFamily: 'LucidaGrande',
+    fontFamily: 'System',
     fontSize: 16,
     color:'#999999'
   },

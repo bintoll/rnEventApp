@@ -82,20 +82,20 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     borderWidth:1,
     borderColor:'#EBEBEC',
-    borderRadius:5,
+    borderRadius:width(1.2),
   },
   textInputDescription: {
     textAlign: I18nManager.isRTL ? 'right' : 'left',
     height: 95,
     borderWidth:1,
     borderColor:'#EBEBEC',
-    borderRadius:5,
+    borderRadius:width(1.2),
     justifyContent:'flex-end',
     marginBottom:20,
   },
   button: {
     backgroundColor: '#BE8FB1',
-    borderRadius: 4,
+    borderRadius: width(1),
     height:40,
     alignItems:'center',
     justifyContent:'center'

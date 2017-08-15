@@ -191,7 +191,7 @@ class Event extends Component {
                             : 'see more'}</Text>
                     </TouchableOpacity>
                   </View>
-                  <View style={[styles.rowElements,{marginTop:height(2.6)}]}>
+                  <View style={[styles.rowElements,{marginTop:width(4.35)}]}>
                     <Image style={styles.timeIcon}
                            source={require('./../resources/images/blacktime.png')}/>
                     <Text style={styles.timeText}>{this.state.data.time}</Text>
@@ -205,7 +205,7 @@ class Event extends Component {
                     </TouchableOpacity>
                   </View>
                   <TouchableOpacity onPress={() => this.goToMap()}>
-                    <View style={[styles.rowElements,{marginTop:height(2.6)}]}>
+                    <View style={[styles.rowElements,{marginTop:width(4.35)}]}>
                       <Image style={styles.locationIcon}
                              source={require('./../resources/images/blacklocation.png')}/>
                       <Text style={styles.timeText}>{this.state.data.place}</Text>
@@ -213,7 +213,7 @@ class Event extends Component {
                     </View>
                   </TouchableOpacity>
                 </View>
-                  <View style={[styles.rowElements,{justifyContent:'space-between',marginHorizontal:5,marginTop:height(2.6)}]}>
+                  <View style={[styles.rowElements,{justifyContent:'space-between',marginHorizontal:5,marginTop:width(4.35)}]}>
                     <TouchableOpacity onPress={() => this.buttonPress('willGo')}>
                       <View style={[styles.button,this.state.willGo ?{opacity:0.6} :{opacity:1}]}>
                         <Text style={styles.buttonText}>{
@@ -233,7 +233,7 @@ class Event extends Component {
                   </View>
               <View style={styles.eventWrapper}>
                 <Text style={styles.participantsText}>{this.state.data.amountOfPeople} משתתפים</Text>
-                  <View style={[styles.rowElements,{justifyContent:'space-between',marginTop:height(2.6)}]}>
+                  <View style={[styles.rowElements,{justifyContent:'space-between',marginTop:width(4.35)}]}>
                     {
                       this.state.data.participants.map((participant,i) => {
                         return (
@@ -267,12 +267,12 @@ class Event extends Component {
         flexDirection: 'row',
       },
       image: {
-        height:height(29),
+        height:195,
 
       },
       eventWrapper: {
         marginHorizontal:width(4),
-        marginTop:height(1.5)
+        marginTop:width(2.5)
       },
       locationIcon: {
         width:width(5.6),
@@ -302,9 +302,9 @@ class Event extends Component {
       },
       categoryWrapper: {
         backgroundColor: '#F4F4F4',
-        borderRadius: 4,
+        borderRadius: width(1),
         marginRight:width(4.8),
-        marginVertical:height(0.5),
+        marginVertical:width(0.8),
         justifyContent:'center',
         alignItems:'center',
         padding:width(0.8),
@@ -328,7 +328,7 @@ class Event extends Component {
       reportButt: {
         marginRight:width(8),
         alignSelf:'center',
-        marginVertical:height(2.6)
+        marginVertical:width(4.35)
       },
       seeMore: {
         fontFamily: 'System',
@@ -341,7 +341,7 @@ class Event extends Component {
         width:width(15),
         height:23,
         borderColor:'#B682A8',
-        borderRadius:4,
+        borderRadius:width(1),
         borderWidth:1,
         alignSelf:'center',
         justifyContent:'center',
@@ -383,11 +383,11 @@ class Event extends Component {
         color: '#FFFFFF'
       },
       participantsText: {
-        fontFamily: 'System-Light',
+        fontFamily: 'System',
         fontSize: 16,
         color: '#333333',
         textAlign:'left',
-        marginTop:height(1)
+        marginTop:width(1.7)
       },
       partcipContainer:{
         justifyContent:'space-between'
@@ -395,7 +395,7 @@ class Event extends Component {
       partcipImg:{
         width:width(12.5),
         height:width(12.5),
-        borderRadius:50
+        borderRadius:width(12.5)
       },
     })
 export default Event;

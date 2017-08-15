@@ -65,18 +65,18 @@ class CategoriesTopPg extends Component {
 const styles = StyleSheet.create({
   containerUnLogin: {
     backgroundColor:'#B783A9',
-    height:height(15),
+    height:width(25),
     alignItems:'center',
     justifyContent: 'center',
   },
   containerUser: {
     backgroundColor:'#B783A9',
-    height:height(15),
+    height:width(25),
     justifyContent: 'center',
   },
   containerAdmin: {
     backgroundColor:'#B783A9',
-    height:height(15),
+    height:width(25),
     justifyContent: 'center',
   },
   rowElementsUser: {
@@ -89,10 +89,10 @@ const styles = StyleSheet.create({
     paddingLeft:width(5)
   },
   buttonAdmin: {
-    marginTop:height(0.15),
+    marginTop:width(0.25),
     borderWidth:1,
     borderColor:'white',
-    borderRadius:4,
+    borderRadius:width(1),
     alignItems:'center',
     width:width(25),
     opacity:0.9
@@ -112,14 +112,14 @@ const styles = StyleSheet.create({
     textAlign:'left'
   },
   avatarWrapper: {
-    width:height(9),
-    height:height(9),
+    width:width(15),
+    height:width(15),
     marginRight:width(2.5)
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 65,
+    borderRadius: width(16.5),
   },
 })
 

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: width(4),
     color: '#000000',
     textAlign:'center',
-    paddingTop:height(3.5),
+    paddingTop:width(5.5),
   },
   border: {
     borderColor: '#C7C7C7',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width:width(100),
-    height:height(7),
+    height:width(11),
     justifyContent:'center',
     borderTopWidth:1,
     borderRightWidth:1,

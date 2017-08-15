@@ -15,6 +15,7 @@ class NavBar extends Component {
 								name='keyboard-arrow-right'
 								color='white'
 								size={31}
+								style={{backgroundColor:'transparent'}}
 								onPress={() => this.props.handleBack()} />
 						<Text style={styles.navText}>Events</Text>
 						<TouchableOpacity>
@@ -29,7 +30,8 @@ class NavBar extends Component {
                   name='keyboard-arrow-right'
                   color='white'
                   size={31}
-                  onPress={() => this.props.handleBack()} />
+                  onPress={() => this.props.handleBack()}
+									style={{backgroundColor:'transparent'}}/>
               <Text style={styles.navText}>Contact Us</Text>
               <TouchableOpacity>
                 <View style={styles.backIcon}/>
@@ -39,13 +41,13 @@ class NavBar extends Component {
 			case 'mainPage':
 				return (
 					<View style={[styles.navBarInnerSearch, {justifyContent: 'space-between',backgroundColor:'#B076A0',alignItems:'center'}]}>
-            <TouchableOpacity>
-              <Image style={styles.searchIcon} source={require('./../resources/images/navigation.png')} onPress={() => this.props.handleDrawerOpen()} />
+            <TouchableOpacity onPress={() => this.props.handleDrawerOpen()}>
+              <Image style={styles.searchIcon} source={require('./../resources/images/navigation.png')} />
             </TouchableOpacity>
             <Text style={styles.navText}>Events</Text>
 						<View style={styles.searchWrapper}>
-              <TouchableOpacity>
-                <Image style={styles.searchIcon} source={require('./../resources/images/search.png')} onPress={() => this.props.searchHandle()} />
+              <TouchableOpacity onPress={() => this.props.searchHandle()} >
+                <Image style={styles.searchIcon} source={require('./../resources/images/search.png')}/>
               </TouchableOpacity>
 						</View>
 					</View>
@@ -57,7 +59,8 @@ class NavBar extends Component {
                   name='keyboard-arrow-right'
                   color='white'
                   size={31}
-                  onPress={() => this.props.handleBack()} />
+                  onPress={() => this.props.handleBack()}
+									style={{backgroundColor:'transparent'}}/>
               <Text style={styles.navText}>Map</Text>
               <TouchableOpacity>
                 <View style={styles.backIcon}/>
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		//alignItems: 'center',
 		width:'100%',
-		paddingHorizontal:width(4.8),
+		paddingHorizontal:width(4),
 		paddingVertical: width(4),
 		//backgroundColor: 'white'
 	},
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     width:'100%',
     paddingHorizontal:width(5),
-    paddingVertical: width(3),
+    paddingVertical: width(4),
     //backgroundColor: 'white'
   },
 	navText: {
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: width(2.5),
 		paddingVertical: width(0.5),
 		borderWidth: 1,
-		borderRadius: 20,
+		borderRadius: width(5),
 		height: width(18),
 		flex: 1,
 		borderColor: '#999999',
@@ -120,7 +123,7 @@ const styles = StyleSheet.create({
 	},
 	searchInput: {
 		flex: 1,
-		borderRadius: 20,
+		borderRadius: width(5),
 		fontSize: width(4.8),
 	},
 	searchIcon: {
