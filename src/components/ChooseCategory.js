@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     flexDirection:'column',
     justifyContent:'space-between',
-    borderRadius:width(4),
+    borderRadius: width(4),
+    overflow: 'hidden'
   },
   textStyle: {
     fontFamily: 'System',

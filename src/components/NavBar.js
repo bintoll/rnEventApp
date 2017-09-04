@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Platform } from 'react-native';
 import { Icon } from 'react-native-elements'
 
 import { width } from 'constants/config.js'
@@ -99,14 +99,17 @@ const styles = StyleSheet.create({
     width:'100%',
     paddingHorizontal:width(5),
     paddingVertical: width(4),
-    //backgroundColor: 'white'
+		//backgroundColor: 'white',
+		paddingTop: Platform.OS == 'ios' ? 30 : 0,
+		alignItems: 'center'
   },
 	navText: {
 		color: 'white',
 		fontFamily:'System',
 		fontSize: width(5.5),
-		fontWeight:'bold',
-    },
+		fontWeight: 'bold',
+		backgroundColor: 'transparent'
+	},
 	searchWrapper: {
 		flexDirection: 'row',
 		alignItems: 'center'

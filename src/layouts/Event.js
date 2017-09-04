@@ -237,7 +237,7 @@ class Event extends Component {
                     {
                       this.state.data.participants.map((participant,i) => {
                         return (
-                            <View key={'cat'+i}>
+                            <View style={styles.partcipImgWrapper} key={'cat'+i}>
                               <Image style={styles.partcipImg} source={require('./../resources/images/avatar.png')}/>
                             </View>
                         )
@@ -392,11 +392,16 @@ class Event extends Component {
       partcipContainer:{
         justifyContent:'space-between'
       },
-      partcipImg:{
+      partcipImgWrapper:{
         width:width(12.5),
         height:width(12.5),
-        borderRadius:width(12.5)
+        borderRadius: width(12.5),
+        overflow: 'hidden'
       },
+      partcipImg: {
+        width: '100%',
+        height: '100%'
+      }
     })
 export default Event;
 

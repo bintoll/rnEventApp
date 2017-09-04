@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar} from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
 import MapView from "react-native-maps";
 
 import NavBar from 'components/NavBar'
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        marginTop: 15
+        marginTop: Platform.OS == 'ios' ? 0 : 15,
     },
     ViewMap: {
       flex: 1,

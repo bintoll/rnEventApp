@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { addNavigationHelpers, StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
 import { width, height } from 'constants/config'
@@ -25,7 +25,7 @@ const CustomDrawerContentComponent = (props) => (
 
 const DrawerNavigatorConfig = {
   drawerWidth: width(76),
-  drawerPosition: 'right',
+  drawerPosition: Platform.OS == 'ios' ? 'left' : 'right',
   contentComponent: props => <CustomDrawerContentComponent {...props} />,
 }
 
