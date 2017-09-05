@@ -142,15 +142,16 @@ class Event extends Component {
                   backgroundColor='transparent'
                   translucent={true}
                   barStyle="light-content"/>
-                <View style={styles.image}>
-                    <Image style={{width:'100%', height:'100%'}} source={this.state.data.pic}/>
-                </View>
+
               </View>
-              <View style={[styles.NavBarStyle]}>
+              <View style={[styles.NavBarStyle,{zIndex:100}]}>
                 <NavBar navName="backEvents" handleBack={() => this.props.navigation.goBack() } />
               </View>
                 <ScrollView style={{backgroundColor:'white'}}>
-                  <View style={{marginBottom:1000}}>
+                  <View>
+                    <View style={[styles.image,{zIndex:50}]}>
+                      <Image style={{width:'100%', height:'100%'}} source={this.state.data.pic}/>
+                    </View>
                 <View style={[styles.eventWrapper]}>
                     <View style={[styles.rowElements,{justifyContent:'space-between'}]}>
                         <Text style={styles.textName}>{this.state.data.name}</Text>
