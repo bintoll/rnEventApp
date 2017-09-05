@@ -76,7 +76,7 @@ const sortByArr = [
   }
 ]
 
-class Other extends Component {
+class Events extends Component {
   constructor(props){
     super(props)
     const sortByArrMod = sortByArr.map((item, i) => ({ ...item, isActive: i == 0 ? true : false }))
@@ -85,6 +85,7 @@ class Other extends Component {
         data: events,
         searchText: '',
         sortByArr: sortByArrMod,
+        headingName:'lol',
         alert: {
           title: 'You must connect to Facebook',
           buttonText: 'Close',
@@ -101,7 +102,10 @@ class Other extends Component {
 
 
   componentWillMount() {
-    // this.props.navigation.navigate('DrawerOpen')
+    this.setState({headingName:this.props.navigation.mainPageHeading})
+  }
+  componentWillReceiveProps() {
+    this.setState({headingName:this.props.navigation.mainPageHeading})
   }
   _dayForward = () => {
     let temp = (moment(this.state.date,"MMMM D"))//from string to moment
@@ -135,6 +139,7 @@ class Other extends Component {
   }
   
   render() {
+    console.log(this.props)
     return (
       <ScrollView style={{backgroundColor: '#F8F8F8'}}>
         <StatusBar
@@ -144,7 +149,8 @@ class Other extends Component {
         <NavBar navName="mainPage"
           handleDrawerOpen={() => this.props.navigation.navigate('DrawerOpen')}
           searchHandle={() => this.searchHandle()}
-          textChangeHandle={(text) => this.searchTextHandle(text)}/>
+          textChangeHandle={(text) => this.searchTextHandle(text)}
+                headingName={this.props.navigation.mainPageHeading}/>
         <View>
           <View style={[styles.centerEl, styles.rowElements,{paddingHorizontal:20,justifyContent:'space-between',alignItems:'center'}]}>
             <View style={styles.rowElements}>
@@ -172,7 +178,8 @@ class Other extends Component {
                   dateText: {
                     fontFamily:'System',
                     fontSize: width(4.5),
-                    color: '#333333'
+                    color: '#333333',
+                    fontWeight:'bold',
                   }
                 }}
                 onDateChange={(date) => {this.setState({date: date})}}/>
@@ -195,7 +202,7 @@ class Other extends Component {
                       <View style={styles.oneEvent}>
                         <View style={[styles.rowElements,{alignItems:'flex-start'}]}>
                           <View style={[styles.columnElements,{alignItems:'center'}]}>
-                            <View style={{height:145,width:145}}>
+                            <View style={{height:125,width:145}}>
                               <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/event.jpg')}/>
                               <View style={[styles.rowElements,{alignItems:'center',marginTop:5}]}>
                                 <View style={{height:18,width:18}}>
@@ -277,7 +284,10 @@ const styles = StyleSheet.create({
   sortBy: {
     fontFamily: 'System',
     fontSize: width(4),
-    color: '#333333'
+    color: '#333333',
+    fontWeight:'bold',
+    paddingVertical:width(1.5),
+    paddingHorizontal:width(3),
   },
   categoryWrapper: {
     backgroundColor: '#F4F4F4',
@@ -309,7 +319,9 @@ const styles = StyleSheet.create({
   arrayCalendar: {
     justifyContent:'center',
     alignSelf:'center',
-    height:25
+    height:25,
+    paddingVertical:width(1.2),
+    paddingHorizontal:width(2),
   },
   icon: {
     width:17,
@@ -340,4 +352,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Other;
+export default Events;

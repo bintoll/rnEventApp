@@ -41,15 +41,13 @@ class NavBar extends Component {
 			case 'mainPage':
 				return (
 					<View style={[styles.navBarInnerSearch, {justifyContent: 'space-between',backgroundColor:'#B076A0',alignItems:'center'}]}>
-            <TouchableOpacity onPress={() => this.props.handleDrawerOpen()}>
+            <TouchableOpacity style={styles.searchWrapper} onPress={() => this.props.handleDrawerOpen()}>
               <Image style={styles.searchIcon} source={require('./../resources/images/navigation.png')} />
             </TouchableOpacity>
-            <Text style={styles.navText}>Events</Text>
-						<View style={styles.searchWrapper}>
-              <TouchableOpacity onPress={() => this.props.searchHandle()} >
+            <Text style={styles.navText}>{this.props.headingName}</Text>
+              <TouchableOpacity style={styles.searchWrapper} onPress={() => this.props.searchHandle()} >
                 <Image style={styles.searchIcon} source={require('./../resources/images/search.png')}/>
               </TouchableOpacity>
-						</View>
 					</View>
 				)
       case 'map':
@@ -112,7 +110,9 @@ const styles = StyleSheet.create({
 	},
 	searchWrapper: {
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+    paddingVertical:width(1.2),
+    paddingHorizontal:width(3),
 	},
 	searchInputWrapper: {
 		paddingHorizontal: width(2.5),
@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
 		fontSize: width(4.8),
 	},
 	searchIcon: {
-		marginRight: 0
+		marginRight: 0,
+
 	},
 	backIcon: {
     width:width(5.3),
@@ -139,6 +140,7 @@ const styles = StyleSheet.create({
   searchIcon: {
     width:width(4.5),
     height:width(4.5),
+
   }
 
 })

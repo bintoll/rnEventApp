@@ -15,7 +15,7 @@ export const categoryListMenu = [
   },
   {
     name: 'האירועים שלי',
-    icon: require('../resources/images/mycategory.png')
+    icon: require('../resources/images/person.png')
   },
   {
     name: 'כל האירועים',

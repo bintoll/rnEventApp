@@ -78,6 +78,9 @@ class Event extends Component {
       pickerData: [this.state[namePicker]],
       selectedValue: [selectedVal],
       pickerTitleText: namePicker,
+      pickerTitleColor:[176,118,160,1],
+      pickerCancelBtnColor:[176,118,160,1],
+      pickerConfirmBtnColor:[176,118,160,1],
       pickerConfirmBtnText: 'Done',
       pickerCancelBtnText: 'Cancel',
       pickerToolBarFontSize:18,
@@ -132,22 +135,23 @@ class Event extends Component {
 
     render() {
         return (
-            <ScrollView style={{backgroundColor: 'white'}}>
-              <View>
+            <View>
+              <View >
                 <View>
               <StatusBar
                   backgroundColor='transparent'
                   translucent={true}
-                  barStyle="light-content"
-              />
+                  barStyle="light-content"/>
                 <View style={styles.image}>
                     <Image style={{width:'100%', height:'100%'}} source={this.state.data.pic}/>
                 </View>
               </View>
-              <View style={styles.NavBarStyle}>
+              <View style={[styles.NavBarStyle]}>
                 <NavBar navName="backEvents" handleBack={() => this.props.navigation.goBack() } />
               </View>
-                <View style={styles.eventWrapper}>
+                <ScrollView style={{backgroundColor:'white'}}>
+                  <View style={{marginBottom:1000}}>
+                <View style={[styles.eventWrapper]}>
                     <View style={[styles.rowElements,{justifyContent:'space-between'}]}>
                         <Text style={styles.textName}>{this.state.data.name}</Text>
                       <View style={[styles.columnElements]}>
@@ -156,9 +160,9 @@ class Event extends Component {
                         </TouchableOpacity>
                         {
                           this.state.isAdmin
-                            ? <View style={styles.adjustContainer}>
+                            ? <TouchableOpacity onPress={() => this.goToSelectCat()} style={styles.adjustContainer}>
                               <Text style={styles.adjustText}>Adjust</Text>
-                            </View>
+                            </TouchableOpacity>
                             : null
                         }
                       </View>
@@ -175,9 +179,9 @@ class Event extends Component {
                       }
                       {
                         this.state.isAdmin
-                          ? <View style={styles.adjustContainer}>
+                          ? <TouchableOpacity onPress={() => this.goToSelectCat()} style={styles.adjustContainer}>
                               <Text style={styles.adjustText}>Adjust</Text>
-                            </View>
+                            </TouchableOpacity>
                           : null
                       }
                     </View>
@@ -197,7 +201,7 @@ class Event extends Component {
                     <Text style={styles.timeText}>{this.state.data.time}</Text>
                   </View>
                   <View style={[styles.rowElements]}>
-                    <TouchableOpacity style={{marginRight:width(8)}} onPress={() => this.goToSelectCat()}>
+                    <TouchableOpacity style={{marginRight:width(8)}}>
                       <Text style={styles.timeButtons}>הוסף ליומן</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{marginRight:width(8)}} onPress={() => this.callPicker('NotificationSettings','1 hour')}>
@@ -248,7 +252,10 @@ class Event extends Component {
                   <Text style={styles.timeButtons}>Report</Text>
                 </TouchableOpacity>
               </View>
+                  </View>
+                </ScrollView>
               </View>
+
               {
                 this.state.popUpActive
                   ?<ChooseCategory
@@ -258,7 +265,7 @@ class Event extends Component {
                         ChangeColorPopup={(indexCategory) => {this.ChangeColorPopup(indexCategory)}}/>
                   :null
               }
-            </ScrollView>
+            </View>
         );
     }
 }

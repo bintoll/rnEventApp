@@ -51,7 +51,15 @@ export default class Drawer extends Component {
     this.setState({list: newState})
   }
 
+  pressCategory = (name) => {
+    this.props.navigation.setNameCategory(name)
+    this.props.navigation.navigate('DrawerClose')
+    this.props.navigation.navigate('Events')
+  }
+
+
   render() {
+    console.log(this.props)
     return (
         <View style={styles.mainWrapper}>
           <ScrollView>
@@ -96,7 +104,7 @@ export default class Drawer extends Component {
                                        ?require('../resources/images/selectedstar.png')
                                        :require('../resources/images/unselectedstar.png')}/>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerClose')}>
+                                <TouchableOpacity onPress={() => this.pressCategory(item.name)}>
                                   <Text style={styles.textStyle}>{item.name}</Text>
                                 </TouchableOpacity>
                               </View>
