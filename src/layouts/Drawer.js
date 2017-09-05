@@ -71,7 +71,7 @@ export default class Drawer extends Component {
                 {
                   categoryListMenu.map((item, index) => (
                           <View style={styles.categoryListWrapper} key={'clm'+index}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.pressCategory(item.name)}>
                               <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <Image style={styles.icon} source={item.icon}/>
                                 <Text style={styles.textStyle}>{item.name}</Text>
