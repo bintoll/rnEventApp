@@ -137,7 +137,7 @@ class Events extends Component {
   goToEvent = () => {
     this.props.navigation.navigate('Event')
   }
-  
+  //593C51
   render() {
     console.log(this.props)
     return (

@@ -78,7 +78,6 @@ class Event extends Component {
       pickerData: [this.state[namePicker]],
       selectedValue: [selectedVal],
       pickerTitleText: namePicker,
-      pickerTitleColor:[176,118,160,1],
       pickerCancelBtnColor:[176,118,160,1],
       pickerConfirmBtnColor:[176,118,160,1],
       pickerConfirmBtnText: 'Done',
@@ -161,7 +160,7 @@ class Event extends Component {
                         </TouchableOpacity>
                         {
                           this.state.isAdmin
-                            ? <TouchableOpacity onPress={() => this.goToSelectCat()} style={styles.adjustContainer}>
+                            ? <TouchableOpacity onPress={() => this.callPicker('SelectPrice','Token')} style={styles.adjustContainer}>
                               <Text style={styles.adjustText}>Adjust</Text>
                             </TouchableOpacity>
                             : null

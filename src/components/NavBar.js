@@ -15,7 +15,7 @@ class NavBar extends Component {
 								name='keyboard-arrow-right'
 								color='white'
 								size={31}
-								style={{backgroundColor:'transparent'}}
+								style={{backgroundColor:'transparent',padding:width(2)}}
 								onPress={() => this.props.handleBack()} />
 						<Text style={styles.navText}>Events</Text>
 						<TouchableOpacity>
@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     width:'100%',
     paddingHorizontal:width(5),
-    paddingBottom: width(2),
+    paddingBottom: width(3),
 		//backgroundColor: 'white',
-		paddingTop: Platform.OS == 'ios' ? 30 : width(2),
+		paddingTop: Platform.OS == 'ios' ? 30 : width(3),
 		alignItems: 'center'
   },
 	navText: {
