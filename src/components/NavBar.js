@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:width(5),
     paddingBottom: width(3),
 		//backgroundColor: 'white',
-		paddingTop: Platform.OS == 'ios' ? 30 : width(3),
+		paddingTop: Platform.OS == 'ios' ? 30 : width(7),
 		alignItems: 'center'
   },
 	navText: {

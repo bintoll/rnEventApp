@@ -48,9 +48,9 @@ class EventMap extends Component {
       return(
           <View style={styles.container}>
             <StatusBar
-                backgroundColor='#B076A0'
-                barStyle="light-content"
-            />
+                backgroundColor='transparent'
+                translucent={true}
+                barStyle="light-content"/>
             <NavBar navName="map"
               handleBack={() => this.props.navigation.goBack()}
               searchHandle={() => this.searchHandle()}

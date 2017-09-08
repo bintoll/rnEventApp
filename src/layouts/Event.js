@@ -142,7 +142,6 @@ class Event extends Component {
                   backgroundColor='transparent'
                   translucent={true}
                   barStyle="light-content"/>
-
               </View>
               <View style={[styles.NavBarStyle,{zIndex:100}]}>
                 <NavBar navName="backEvents" handleBack={() => this.props.navigation.goBack() } />

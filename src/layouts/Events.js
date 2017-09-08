@@ -145,9 +145,9 @@ class Events extends Component {
     return (
       <ScrollView style={{backgroundColor: '#F8F8F8'}}>
         <StatusBar
-            backgroundColor='#B076A0'
-            barStyle="light-content"
-        />
+            backgroundColor='transparent'
+            translucent={true}
+            barStyle="light-content"/>
         <NavBar navName="mainPage"
           handleDrawerOpen={() => this.props.navigation.navigate('DrawerOpen')}
           searchHandle={() => this.searchHandle()}
