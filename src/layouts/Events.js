@@ -7,6 +7,8 @@ import Alert from 'components/Alert'
 
 
 
+
+
 import { width,height } from 'constants/config.js'
 
 import NavBar from 'components/NavBar.js'
@@ -152,7 +154,7 @@ class Events extends Component {
           textChangeHandle={(text) => this.searchTextHandle(text)}
                 headingName={this.props.navigation.mainPageHeading}/>
         <View>
-          <View style={[styles.centerEl, styles.rowElements,{paddingHorizontal:20,justifyContent:'space-between',alignItems:'center'}]}>
+          <View style={[styles.centerEl, styles.rowElements,{paddingHorizontal:20,justifyContent:'space-between',alignItems:'center',backgroundColor:this.state.alert.active ?'#8C8D8D' :'white'}]}>
             <View style={styles.rowElements}>
             <Icon
                 style={styles.arrayCalendar}
@@ -267,7 +269,7 @@ const styles = StyleSheet.create({
     paddingVertical:8,
     shadowColor: '#EBEBEC',
     shadowOffset: { width: 1, height: 3 },
-    borderBottomWidth:1,
+
     borderTopWidth:0,
     alignItems:'center',
     backgroundColor:'white',

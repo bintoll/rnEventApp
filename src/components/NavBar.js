@@ -85,15 +85,14 @@ const styles = StyleSheet.create({
 	},
 	navBarInnerBack: {
 		flexDirection: 'row',
-		//alignItems: 'center',
+		alignItems: 'center',
 		width:'100%',
-		paddingHorizontal:width(4),
-		paddingVertical: width(4),
+		paddingHorizontal:width(5),
+		paddingVertical: width(2),
 		//backgroundColor: 'white'
 	},
   navBarInnerSearch: {
     flexDirection: 'row',
-    //alignItems: 'center',
     width:'100%',
     paddingHorizontal:width(5),
     paddingBottom: width(3),
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
 	searchWrapper: {
 		flexDirection: 'row',
 		alignItems: 'center',
-    paddingVertical:width(1.2),
+    paddingVertical:width(2),
     paddingHorizontal:width(3),
 	},
 	searchInputWrapper: {

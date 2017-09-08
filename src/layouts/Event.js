@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar } from 'react-native'
 import Picker from 'react-native-picker'
+import AndroidBackButton from "react-native-android-back-button"
 
 import { width, height,NotificationSettings,SelectPrice } from 'constants/config'
 
@@ -265,6 +266,9 @@ class Event extends Component {
                         ChangeColorPopup={(indexCategory) => {this.ChangeColorPopup(indexCategory)}}/>
                   :null
               }
+              <AndroidBackButton
+                  onPress={() => this.props.navigation.goBack()}
+              />
             </View>
         );
     }

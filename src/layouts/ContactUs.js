@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity,I18nManager,TextInput} from 'react-native';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
 
 import {ContactPlaceholders} from 'constants/config'
 import { width, height } from 'constants/config'
