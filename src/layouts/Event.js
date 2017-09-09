@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar } from 'react-native'
+import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar, Animated, interpolate } from 'react-native'
 import Picker from 'react-native-picker'
 import AndroidBackButton from "react-native-android-back-button"
 
@@ -66,6 +66,8 @@ class Event extends Component {
           isAdmin:true,
           isIntrested: false,
           popUpActive: false,
+          opacityNav: new Animated.Value(0),
+          statusBarColor : false
         }
     }
 
@@ -133,21 +135,42 @@ class Event extends Component {
     this.setState({popUpActive:false})
   }
 
+  animation = () => {
+    setTimeout(() => {
+      this.setState({statusBarColor:true})
+
+    }, 600)
+    Animated.timing(
+        this.state.opacityNav,
+        {
+          toValue: 1,
+          duration: 2000,
+        },
+    ).start()
+  }
+
     render() {
+      const animatedOpacity =
+          this.state.opacityNav.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 100]
+          })
         return (
             <View>
               <View >
-                <View>
               <StatusBar
-                  backgroundColor='transparent'
+                  backgroundColor={this.state.statusBarColor ?'#B682A8' :'transparent'}
                   translucent={true}
                   barStyle="light-content"/>
+              <View style={[styles.NavBarStyle]}>
+                <Animated.View style={{backgroundColor:'#B682A8',opacity:animatedOpacity,height:width(15),zIndex:120}}>
+                </Animated.View>
+                <View style={{zIndex:220,position:'absolute',width:'100%',}}>
+                <NavBar navName="backEvents" handleBack={() => this.props.navigation.goBack() }/>
+                </View>
               </View>
-              <View style={[styles.NavBarStyle,{zIndex:100}]}>
-                <NavBar navName="backEvents" handleBack={() => this.props.navigation.goBack() } />
-              </View>
-                <ScrollView style={{backgroundColor:'white'}}>
-                  <View>
+                <ScrollView style={{backgroundColor:'white'}} onScroll={this.animation}>
+                  <View style={{paddingBottom:400}}>
                     <View style={[styles.image,{zIndex:50}]}>
                       <Image style={{width:'100%', height:'100%'}} source={this.state.data.pic}/>
                     </View>
@@ -333,7 +356,7 @@ class Event extends Component {
       NavBarStyle: {
         position:'absolute',
         width:'100%',
-        marginTop:25,
+        marginTop:20,
       },
       reportButt: {
         marginRight:width(8),
