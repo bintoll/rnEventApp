@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
   nameEvent: {
     fontFamily: 'System',
     fontSize: width(5),
-    color: '#B076A0',
+    color: '#B783A9',
     width:220,
     textAlign:'left',
     marginBottom:18,
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'System',
     fontSize: width(4),
-    color: '#B076A0',
+    color: '#B783A9',
     alignSelf:'center'
   },
 })

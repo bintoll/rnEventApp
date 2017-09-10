@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, StatusBar} from 'react-native';
 import { Button } from 'react-native-elements'
 
 
@@ -62,8 +62,11 @@ export default class Drawer extends Component {
     console.log(this.props)
     return (
         <View style={styles.mainWrapper}>
+          <StatusBar
+              backgroundColor={'#B783A9'}
+              barStyle="light-content"/>
           <ScrollView>
-            <View>
+            <View style={{paddingTop:10}}>
               <CategoriesTopPg
                 isAuthorized={this.state.isAuthorized}
                 superUser={this.state.superUser}/>
@@ -142,12 +145,14 @@ const styles = StyleSheet.create({
     height:width(5),
     width:width(5),
     marginRight:width(2.5),
+
   },
   icon: {
     height:width(8.4),
     width:width(5),
     resizeMode:'contain',
     marginRight:width(2.5),
+    paddingVertical:30,
   },
   buttonText: {
     fontFamily:'System',

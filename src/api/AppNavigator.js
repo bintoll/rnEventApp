@@ -25,7 +25,7 @@ import Drawer from 'layouts/Drawer'
 
   const DrawerNavigatorConfig = {
     drawerWidth: width(76),
-    drawerPosition: Platform.OS == 'ios' ? 'left' : 'right',
+    drawerPosition: 'left',
     contentComponent: props => <CustomDrawerContentComponent {...props} />,
   }
 

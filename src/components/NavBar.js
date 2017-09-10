@@ -25,7 +25,7 @@ class NavBar extends Component {
 				)
       case 'backContact':
         return (
-            <View style={[styles.navBarInnerSearch,{justifyContent:'space-between',backgroundColor:'#B076A0'}]}>
+            <View style={[styles.navBarInnerSearch,{justifyContent:'space-between',backgroundColor:'#B783A9'}]}>
               <Icon
                   name='keyboard-arrow-right'
                   color='white'
@@ -40,7 +40,7 @@ class NavBar extends Component {
         )
 			case 'mainPage':
 				return (
-					<View style={[styles.navBarInnerSearch, {justifyContent: 'space-between',backgroundColor:'#B076A0',alignItems:'center'}]}>
+					<View style={[styles.navBarInnerSearch, {justifyContent: 'space-between',backgroundColor:'#B783A9',alignItems:'center'}]}>
             <TouchableOpacity style={styles.searchWrapper} onPress={() => this.props.handleDrawerOpen()}>
               <Image style={styles.searchIcon} source={require('./../resources/images/navigation.png')} />
             </TouchableOpacity>
@@ -52,7 +52,7 @@ class NavBar extends Component {
 				)
       case 'map':
         return (
-            <View style={[styles.navBarInnerSearch,{justifyContent:'space-between',backgroundColor:'#B076A0'}]}>
+            <View style={[styles.navBarInnerSearch,{justifyContent:'space-between',backgroundColor:'#B783A9'}]}>
               <Icon
                   name='keyboard-arrow-right'
                   color='white'

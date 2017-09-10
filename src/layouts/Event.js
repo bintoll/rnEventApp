@@ -135,12 +135,7 @@ class Event extends Component {
   }
 
   animation = (y) => {
-    Animated.timing(
-        this.state.opacityNav,
-        {
-          toValue: y,
-        }
-    ).start();
+    this.state.opacityNav.setValue(y)
   }
 
     render() {
@@ -163,7 +158,7 @@ class Event extends Component {
                 </View>
               </View>
                 <ScrollView style={{backgroundColor:'white'}} onScroll={(event)=>this.animation(event.nativeEvent.contentOffset.y)}>
-                  <View style={{paddingBottom:400}}>
+                  <View style={{paddingBottom:100}}>
                     <View style={[styles.image]}>
                       <Image style={{width:'100%', height:'100%'}} source={this.state.data.pic}/>
                     </View>
