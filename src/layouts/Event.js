@@ -67,7 +67,6 @@ class Event extends Component {
           isIntrested: false,
           popUpActive: false,
           opacityNav: new Animated.Value(0),
-          statusBarColor : false
         }
     }
 
@@ -135,32 +134,26 @@ class Event extends Component {
     this.setState({popUpActive:false})
   }
 
-  animation = () => {
-    setTimeout(() => {
-      this.setState({statusBarColor:true})
-
-    }, 600)
+  animation = (y) => {
     Animated.timing(
         this.state.opacityNav,
         {
-          toValue: 1,
-          duration: 2000,
-        },
-    ).start()
+          toValue: y,
+        }
+    ).start();
   }
 
     render() {
       const animatedOpacity =
           this.state.opacityNav.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 100]
+            inputRange: [0, 171],
+            outputRange: [0, 1]
           })
         return (
             <View>
               <View >
               <StatusBar
-                  backgroundColor={this.state.statusBarColor ?'#B682A8' :'transparent'}
-                  translucent={true}
+                  backgroundColor={'#B682A8'}
                   barStyle="light-content"/>
               <View style={[styles.NavBarStyle]}>
                 <Animated.View style={{backgroundColor:'#B682A8',opacity:animatedOpacity,height:width(15),zIndex:120}}>
@@ -169,9 +162,9 @@ class Event extends Component {
                 <NavBar navName="backEvents" handleBack={() => this.props.navigation.goBack() }/>
                 </View>
               </View>
-                <ScrollView style={{backgroundColor:'white'}} onScroll={this.animation}>
+                <ScrollView style={{backgroundColor:'white'}} onScroll={(event)=>this.animation(event.nativeEvent.contentOffset.y)}>
                   <View style={{paddingBottom:400}}>
-                    <View style={[styles.image,{zIndex:50}]}>
+                    <View style={[styles.image]}>
                       <Image style={{width:'100%', height:'100%'}} source={this.state.data.pic}/>
                     </View>
                 <View style={[styles.eventWrapper]}>
@@ -301,6 +294,7 @@ class Event extends Component {
       },
       image: {
         height:195,
+        marginTop:width(3)
 
       },
       eventWrapper: {
