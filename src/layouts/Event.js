@@ -150,10 +150,10 @@ class Event extends Component {
               <StatusBar
                   backgroundColor={'#B682A8'}
                   barStyle="light-content"/>
-              <View style={[styles.NavBarStyle,{zIndex:300}]}>
-                <Animated.View style={{backgroundColor:'#B682A8',opacity:animatedOpacity,height:width(15),zIndex:120}}>
+              <View style={[styles.NavBarStyle,{zIndex:300,marginTop:Platform.OS=='ios' ?0 :30}]}>
+                <Animated.View style={{backgroundColor:'#B682A8',opacity:animatedOpacity,height:Platform.OS == 'ios' ? width(17) : width(15),zIndex:120}}>
                 </Animated.View>
-                <View style={{zIndex:220,position:'absolute',width:'100%',}}>
+                <View style={{zIndex:220,position:'absolute',width:'100%',marginTop:Platform.OS == 'ios' ?5 :0}}>
                 <NavBar navName="backEvents" handleBack={() => this.props.navigation.goBack() }/>
                 </View>
               </View>
