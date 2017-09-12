@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, StatusBar} from 'react-native';
+import {Image, StyleSheet, Platform, Text, View, ScrollView, TouchableOpacity, StatusBar} from 'react-native';
 import { Button } from 'react-native-elements'
 
 
@@ -66,7 +66,7 @@ export default class Drawer extends Component {
               backgroundColor={'#B783A9'}
               barStyle="light-content"/>
           <ScrollView>
-            <View style={{paddingTop:10}}>
+            <View style={{paddingTop:Platform.OS == 'ios' ? 0 : 10}}>
               <CategoriesTopPg
                 isAuthorized={this.state.isAuthorized}
                 superUser={this.state.superUser}/>
@@ -148,11 +148,10 @@ const styles = StyleSheet.create({
 
   },
   icon: {
-    height:width(8.4),
+    height:width(5),
     width:width(5),
     resizeMode:'contain',
     marginRight:width(2.5),
-    paddingVertical:30,
   },
   buttonText: {
     fontFamily:'System',

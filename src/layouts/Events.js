@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar } from 'react-native'
+import { ScrollView, Image, StyleSheet, View, Platform, Text, FlatList, I18nManager, TouchableOpacity, StatusBar } from 'react-native'
 import { Icon } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
@@ -204,7 +204,7 @@ class Events extends Component {
                       <View style={styles.oneEvent}>
                         <View style={[styles.rowElements,{alignItems:'flex-start'}]}>
                           <View style={[styles.columnElements,{alignItems:'center'}]}>
-                            <View style={{height:125,width:145}}>
+                            <View style={Platform.OS == 'ios' ?{height:100,width:120} : {height:125,width:145} }>
                               <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/event.jpg')}/>
                               <View style={[styles.rowElements,{alignItems:'center',marginTop:5}]}>
                                 <View style={{height:18,width:18}}>

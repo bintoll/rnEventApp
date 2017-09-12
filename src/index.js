@@ -8,7 +8,7 @@ import AppWithNavigationState from 'api/AppNavigator'
 class rnEventApp extends React.Component {
   constructor(params) {
     super(params)
-    I18nManager.forceRTL(false);
+    I18nManager.forceRTL(true);
   }
   render() {
     return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar, Animated, interpolate } from 'react-native'
+import { ScrollView, Image, StyleSheet, Platform, View, Text, FlatList, I18nManager, TouchableOpacity, StatusBar, Animated, interpolate } from 'react-native'
 import Picker from 'react-native-picker'
 import AndroidBackButton from "react-native-android-back-button"
 
@@ -150,7 +150,7 @@ class Event extends Component {
               <StatusBar
                   backgroundColor={'#B682A8'}
                   barStyle="light-content"/>
-              <View style={[styles.NavBarStyle]}>
+              <View style={[styles.NavBarStyle,{zIndex:300}]}>
                 <Animated.View style={{backgroundColor:'#B682A8',opacity:animatedOpacity,height:width(15),zIndex:120}}>
                 </Animated.View>
                 <View style={{zIndex:220,position:'absolute',width:'100%',}}>
@@ -159,7 +159,7 @@ class Event extends Component {
               </View>
                 <ScrollView style={{backgroundColor:'white'}} onScroll={(event)=>this.animation(event.nativeEvent.contentOffset.y)}>
                   <View style={{paddingBottom:100}}>
-                    <View style={[styles.image]}>
+                    <View style={[styles.image,{marginTop:Platform.OS == 'ios' ? 0 : width(3)}]}>
                       <Image style={{width:'100%', height:'100%'}} source={this.state.data.pic}/>
                     </View>
                 <View style={[styles.eventWrapper]}>
@@ -289,7 +289,6 @@ class Event extends Component {
       },
       image: {
         height:195,
-        marginTop:width(3)
 
       },
       eventWrapper: {

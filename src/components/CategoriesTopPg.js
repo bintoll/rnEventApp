@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { Image, StyleSheet, Platform, View, Text, TouchableOpacity } from 'react-native'
 
 import { width, height } from 'constants/config'
 
@@ -9,7 +9,7 @@ class CategoriesTopPg extends Component {
     let icon =
         <View style={styles.avatarWrapper}>
           <Image
-              style={styles.image}
+              style={[styles.image,{borderRadius: Platform.OS == 'ios' ? 0 : width(15)}]}
               source={require('./../resources/images/avatar.png')}/>
         </View>
     if (this.props.isAuthorized) {
@@ -114,12 +114,13 @@ const styles = StyleSheet.create({
   avatarWrapper: {
     width:width(15),
     height:width(15),
-    marginRight:width(2.5)
+    marginRight:width(2.5),
+    borderRadius: width(15),
+    overflow: 'hidden'
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: width(16.5),
   },
 })
 
