@@ -53,7 +53,7 @@ class ContactUs extends Component {
             })
           }
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Send</Text>
+            <Text style={styles.buttonText}>לִשְׁלוֹחַ</Text>
           </TouchableOpacity>
         </View>
         <AndroidBackButton
@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     borderRadius: width(1),
     height:40,
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    marginTop:20,
   },
   buttonText: {
     fontFamily: 'System',

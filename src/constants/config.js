@@ -25,20 +25,20 @@ export const categoryListMenu = [
 
 export const ContactPlaceholders = [
   {
-    heading:'Name',
-    placeholder:'Please Input Your Name'
+    heading:'שֵׁם',
+    placeholder:'אנא הכנס את שמך'
   },
   {
-    heading:'Phone',
-    placeholder:'Please Input Your Phone'
+    heading:'טלפון',
+    placeholder:'אנא הזן את מספר הטלפון שלך'
   },
   {
-    heading:'Email',
-    placeholder:'Please Input Your Email'
+    heading:'אֶלֶקטרוֹנִי',
+    placeholder:'אנא הזן את הדוא"ל שלך'
   },
   {
-    heading:'Description',
-    placeholder:'Please Input Your Description'
+    heading:'תאור',
+    placeholder:'אנא הזן את התיאור שלך'
   }
 ]
 

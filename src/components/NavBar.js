@@ -32,7 +32,7 @@ class NavBar extends Component {
                   size={31}
                   onPress={() => this.props.handleBack()}
 									style={{backgroundColor:'transparent'}}/>
-              <Text style={styles.navText}>Contact Us</Text>
+              <Text style={styles.navText}>תיצור איתנו קשר</Text>
               <TouchableOpacity>
                 <View style={styles.backIcon}/>
               </TouchableOpacity>
