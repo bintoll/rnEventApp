@@ -88,11 +88,12 @@ class Events extends Component {
         searchText: '',
         sortByArr: sortByArrMod,
         headingName:'lol',
+        favorite:[false,false,false,false,false],
         alert: {
           title: 'You must connect to Facebook',
           buttonText: 'Close',
           active: true
-        }
+        },
       }
   }
 
@@ -102,6 +103,13 @@ class Events extends Component {
     this.setState({alert: newState})
   }
 
+  pressFave = ( index ) => {
+    const newState = this.state.favorite
+    newState[index] = !newState[index]
+    this.setState({favorite:newState})
+    console.log(this.state.favorite)
+    
+  }
 
   componentWillMount() {
     this.setState({headingName:this.props.navigation.mainPageHeading})
@@ -142,6 +150,7 @@ class Events extends Component {
   //593C51
   render() {
     console.log(this.props)
+    const favorite = this.state.favorite
     return (
       <ScrollView style={{backgroundColor: '#F8F8F8'}}>
         <StatusBar
@@ -199,13 +208,17 @@ class Events extends Component {
               <View style={styles.fltList}>
               <FlatList
                 data={this.state.data}
-                renderItem={({ item }) => (
+                extraData={this.state}
+                renderItem={({ item, index }) => (
                     <TouchableOpacity onPress={() => this.goToEvent(item.key)}>
                       <View style={styles.oneEvent}>
                         <View style={[styles.rowElements,{alignItems:'flex-start'}]}>
                           <View style={[styles.columnElements,{alignItems:'center'}]}>
                             <View style={Platform.OS == 'ios' ?{height:100,width:120} : {height:125,width:145} }>
-                              <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/event.jpg')}/>
+                              <Image style={{width:'100%', height:'100%'}} source={require('./../resources/images/event.jpg')}/>
+                              <TouchableOpacity onPress={()=>this.pressFave(index)} style={{position:'absolute',marginTop:5, marginLeft:5,width:'20%', height:'20%'}}>
+                                <Image style={{width:'100%', height:'100%',opacity: this.state.favorite[index] ?0.7 :0.3}} source={require('./../resources/images/heart.png')}/>
+                              </TouchableOpacity>
                               <View style={[styles.rowElements,{alignItems:'center',marginTop:5}]}>
                                 <View style={{height:18,width:18}}>
                                   <Image style={{width:'100%', height:'100%'}}source={require('./../resources/images/avatar.png')}/>

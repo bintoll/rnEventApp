@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
 import MapView from "react-native-maps";
+import AndroidBackButton from "react-native-android-back-button"
 
 import NavBar from 'components/NavBar'
 
@@ -74,6 +75,8 @@ class EventMap extends Component {
                 ))}
               </MapView>    
             </View>
+            <AndroidBackButton
+                  onPress={() => this.props.navigation.goBack()}/>
           </View>
       );
   }

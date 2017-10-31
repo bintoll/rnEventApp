@@ -3,6 +3,8 @@ import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity,I18nManager,
 
 import {ContactPlaceholders} from 'constants/config'
 import { width, height } from 'constants/config'
+import AndroidBackButton from "react-native-android-back-button"
+
 
 import NavBar from 'components/NavBar'
 
@@ -54,6 +56,9 @@ class ContactUs extends Component {
             <Text style={styles.buttonText}>Send</Text>
           </TouchableOpacity>
         </View>
+        <AndroidBackButton
+                  onPress={() => this.props.navigation.goBack()}
+              />
         </ScrollView>
     );
   }
